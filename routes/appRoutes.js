@@ -14,12 +14,11 @@ module.exports = (helpers) => {
       if(err) {
         console.error(err);
       }
-      foods.forEach((food) => {
-        console.log(food);
-        console.log(`id: ${food.id}`);
-      });
+      let templateVars = {
+        foodsList: foods
+      }
+      res.render("menu", templateVars);
     })
-    res.render("menu");
   });
   
   router.get("/cart", (req, res) => {
