@@ -57,58 +57,22 @@
 
       <!-- Example row of columns -->
       <div class="row">
-        <div class="col-md-3 food">
-          <img src="/images/chicken.jpg" alt="Chicken" class="img-thumbnail">
-          <h5 class="text-center">Chicken Paprikash</h5>
-          <p class="text-center">$10.00</p>
-
-          <div class="wrapper text-center">
-            <div class="quantity">
-              <button class="decrement">-</button>
-              <div>0</div>
-              <button class="increment">+</button>
+        <% foodsList.forEach((food => { %>
+          <div class="col-md-3 food">
+              <img src="/images/chicken.jpg" alt="Chicken" class="img-thumbnail">
+              <h5 class="text-center"><%= food.name %></h5>
+              <p class="text-center"><%= food.price %></p>
+    
+              <div class="wrapper text-center">
+                <div class="quantity">
+                  <button class="decrement">-</button>
+                  <div>0</div>
+                  <button class="increment">+</button>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-md-3 food">
-          <img src="/images/chicken.jpg" alt="Chicken" class="img-thumbnail">
-          <h5 class="text-center">Chicken Paprikash</h5>
-          <p class="text-center">$10.00</p>
-
-          <div class="wrapper text-center">
-            <div class="quantity">
-              <button class="decrement">-</button>
-              <div>0</div>
-              <button class="increment">+</button>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 food">
-          <img src="/images/chicken.jpg" alt="Chicken" class="img-thumbnail">
-          <h5 class="text-center">Chicken Paprikash</h5>
-          <p class="text-center">$10.00</p>
-
-          <div class="wrapper text-center">
-            <div class="quantity">
-              <button class="decrement">-</button>
-              <div>0</div>
-              <button class="increment">+</button>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 food">
-          <img src="/images/chicken.jpg" alt="Chicken" class="img-thumbnail">
-          <h5 class="text-center">Chicken Paprikash</h5>
-          <p class="text-center">$10.00</p>
-
-          <div class="wrapper text-center">
-            <div class="quantity">
-              <button class="decrement">-</button>
-              <div>0</div>
-              <button class="increment">+</button>
-            </div>
-          </div>
-        </div>
+        <% })) %>
+      </div>
 
       </div>
       <hr>
