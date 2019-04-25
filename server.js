@@ -48,6 +48,10 @@ app.get("/menu", (req, res) => {
   res.render("menu");
 });
 
+app.get("/cart", (req, res) => {
+  res.render("checkout");
+})
+
 app.listen(PORT, '0.0.0.0', () => {
   console.log("Example app listening on port " + PORT);
 });
