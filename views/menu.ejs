@@ -36,13 +36,14 @@
     <div class="container">
       <!-- Example row of columns -->
       <div class="row">
-        <% foodsList.forEach((elm => { console.log(elm.name) })) %>
-        <div class="col-md-4">
-          <h2 class="text-center">Wiener Schnitzel</h2>
-          <img src="/images/pork.jpg" alt="Chicken Paprikash" class="img-thumbnail">
-          <p>Das ist gut</p>
-          <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
-        </div>
+        <% foodsList.forEach((elm => { %>
+          <div class="col-md-4">
+            <h2 class="text-center"><%=elm.name %></h2>
+            <img src="/images/pork.jpg" alt="Chicken Paprikash" class="img-thumbnail">
+            <p><%= elm.description %></p>
+            <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+          </div>
+        <% })) %>
       </div>
 
       <hr>
