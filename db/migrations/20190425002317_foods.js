@@ -1,4 +1,4 @@
-exports.up = function(knex, Promise) {
+exports.up = function(knex, Promise) { // eslint-disable-line no-unused-vars
   return knex.schema.createTable('foods', function (table) {
     table.increments();
     table.string('name');
@@ -7,6 +7,6 @@ exports.up = function(knex, Promise) {
   });
 };
 
-exports.down = function(knex, Promise) {
+exports.down = function(knex, Promise) { // eslint-disable-line no-unused-vars
   return knex.schema.dropTable('foods');
 };
