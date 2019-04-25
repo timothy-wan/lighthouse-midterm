@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="/styles/menu.css">
     <link rel="stylesheet" href="/styles/layout.css">
+
     <title>Menu</title>
   </head>
 
@@ -59,21 +60,20 @@
       <div class="row">
         <% foodsList.forEach((food => { %>
           <div class="col-md-3 food">
-              <img src="/images/chicken.jpg" alt="Chicken" class="img-thumbnail">
-              <h5 class="text-center"><%= food.name %></h5>
-              <p class="text-center"><%= food.price %></p>
-    
-              <div class="wrapper text-center">
-                <div class="quantity">
-                  <button class="decrement">-</button>
-                  <div>0</div>
-                  <button class="increment">+</button>
+            <img src="/images/chicken.jpg" alt="Chicken" class="img-thumbnail">
+            <h5 class="text-center"><%= food.name %></h5>
+            <p class="text-center"><%= food.price %></p>
+            <p class="text-center"><%= food.id %></p>
+            <div class="wrapper text-center">
+              <div class="quantity">
+                <button class="decrement" data-foodid="<%= food.id %>">-</button>
+                <div class="count">0</div>
+                  <button class="increment" data-foodid="<%= food.id %>">+</button>
+                </div>
               </div>
             </div>
           </div>
         <% })) %>
-      </div>
-
       </div>
       <hr>
 
@@ -85,6 +85,10 @@
     <p>© MEAT BOY 2017-2019</p>
   </footer>
 
-
+  <script type="text/javascript" src="/scripts/menu.js"></script>
+  <script
+    src="https://code.jquery.com/jquery-3.4.0.slim.js"
+    integrity="sha256-milezx5lakrZu0OP9b2QWFy1ft/UEUK6NH1Jqz8hUhQ="
+    crossorigin="anonymous"></script>
 </body>
 </html>
