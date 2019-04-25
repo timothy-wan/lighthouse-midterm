@@ -2,16 +2,15 @@
 
 const express = require('express');
 const router  = express.Router();
-const dataHelpers = require('../data/helpers');
 
-module.exports = (knex) => {
+module.exports = (helpers) => {
 
   router.get("/", (req, res) => {
-    knex
-      .select("*")
-      .from("users")
-      .then((results) => {
-        res.json(results);
+    helpers.getUserData((err, users) => {
+      if(err) {
+        console.error(err);
+      }
+      res.json(users);
     });
   });
 

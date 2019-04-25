@@ -1,11 +1,11 @@
 function makeHelpers(knex) {
-  const getUserData = () => {
+  const getUserData = (cb) => {
       knex
       .select("*")
       .from("users")
-      .then((results) => {
-        console.log(results);
-    });
+      .asCallback((err, res) => {
+        cb(err, res);
+      })
   }
   return  {
     getUserData

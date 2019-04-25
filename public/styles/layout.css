@@ -5,8 +5,3 @@ body {
 body h1 {
   color: #244751;
 }
-
-.bg {
- background: url('https://images.unsplash.com/photo-1528920304568-7aa06b3dda8b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=751&q=80') fixed center no-repeat;
- background-size: cover;
-}
