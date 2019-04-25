@@ -36,12 +36,19 @@
     <div class="container">
       <!-- Example row of columns -->
       <div class="row">
-        <% foodsList.forEach((elm => { %>
-          <div class="col-md-4">
-            <h2 class="text-center"><%=elm.name %></h2>
-            <img src="/images/pork.jpg" alt="Chicken Paprikash" class="img-thumbnail">
-            <p><%= elm.description %></p>
-            <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+        <% foodsList.forEach((food => { %>
+          <div class="col-md-3 food">
+              <img src="/images/chicken.jpg" alt="Chicken" class="img-thumbnail">
+              <h5 class="text-center"><%= food.name %></h5>
+              <p class="text-center"><%= food.price %></p>
+    
+              <div class="wrapper text-center">
+                <div class="quantity">
+                  <button class="decrement">-</button>
+                  <div>0</div>
+                  <button class="increment">+</button>
+              </div>
+            </div>
           </div>
         <% })) %>
       </div>
