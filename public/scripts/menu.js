@@ -1,15 +1,15 @@
 $(()=>{
 
-  function populateStorage() {
-    localStorage.setItem('1', '4');
-    localStorage.setItem('2', '3');
-    localStorage.setItem('3', '2');
-  }
-  populateStorage();
-
   function writeItemQuantities() {
+    const $counts = $(".count")
+    $.each($counts, function(i, val){
+      const itemID = $(val).siblings().eq(0).attr('data-foodid');
+      $(val).html(localStorage.getItem(itemID))
+    })
+    .siblings().eq(0);
 
   }
+  writeItemQuantities()
 
 
   // listen to increment and decrement buttons for each product.
@@ -26,8 +26,11 @@ $(()=>{
     if (buttonType === 'decrement') {
       let oldQuantity = Number(localStorage.getItem(foodid));
       let newQuantity = oldQuantity - 1;
-      localStorage.setItem(foodid, newQuantity);
-      $(event.target).siblings('div').html(newQuantity);
+      if (newQuantity >= 0) {
+        localStorage.setItem(foodid, newQuantity);
+        $(event.target).siblings('div').html(newQuantity);
+      }
+
     }
   })
 });
