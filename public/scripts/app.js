@@ -54,7 +54,7 @@ const drawCartItems = (food, ul) => {
   let h5 = $('<h5>').addClass('my-0').text(food.name);
   let small = $('<small>').addClass('text-muted').text(food.description);
   let span1 = $('<span>').addClass('text-muted').text(`$ ${priceTotal}`);
-  let span2 = $('<span>').addClass('text-muted').text(`$ ${food.price}`);
+  let span2 = $('<span>').addClass('text-muted').text(`$ ${food.price}${food.unitprice}`);
 
   // append tags
   div2.append(h5)
@@ -87,7 +87,7 @@ const drawPriceElement = (ul, label, amount) => {
       .append(span2);
     ul.append(li);
   }
-  
+
 }
 
 // draws the users whole cart
@@ -150,7 +150,7 @@ function quantityCounter(event){
   if (buttonType === 'increment') {
     let oldQuantity = Number(localStorage.getItem(foodid));
     let newQuantity = oldQuantity + 1;
-    localStorage.setItem(foodid, newQuantity);    
+    localStorage.setItem(foodid, newQuantity);
     $(event.target).siblings('div').html(newQuantity);
     location.reload();
   }
@@ -175,5 +175,5 @@ $(() => {
   } else {
     renderEmptyCart();
   }
-  
+
 })
