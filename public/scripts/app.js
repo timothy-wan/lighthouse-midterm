@@ -63,12 +63,13 @@ const matchFood = (cart, foods) => {
 }
 
 const drawCartItems = (food, ul) => {
+  let priceTotal = (food.quantity * food.price).toFixed(2)
   // make html tags
   let li = $('<li>').addClass('list-group-item d-flex justify-content-between lh-condensed');
   let div = $('<div>');
   let h5 = $('<h5>').addClass('my-0').text(food.name);
   let small = $('<small>').addClass('text-muted').text(food.description);
-  let span = $('<span>').addClass('text-muted').text(food.quantity * food.price);
+  let span = $('<span>').addClass('text-muted').text(`$ ${priceTotal}`);
 
   // append tags
   div.append(h5)
@@ -78,13 +79,26 @@ const drawCartItems = (food, ul) => {
   ul.append(li);
 }
 
+const drawPriceElement = (ul, label, amount) => {
+  let li = $('<li>').addClass('list-group-item d-flex justify-content-between');
+  let span1 = $('<span>').text(label);
+  let span2 = $('<span>').addClass('text-muted').text(`$ ${amount}`);
+
+  li.append(span1)
+    .append(span2);
+  ul.append(li);
+}
+
 const drawCart = (foods, total) => {
+  let subtotal = 0;
   // make html tags
   let div = $('<div>').addClass('col-md-12 order-md-2 mb-4');
   let h4 = $('<h4>').addClass('d-flex justify-content-between align-items-center mb-3');
   let span1 = $('<span>').addClass('text-muted').text('Your Cart');
   let span2 = $('<span>').addClass('badge badge-secondary badge-pill').text(total);
   let ul = $('<ul>').addClass('list-group mb-3');
+  let ul2 = $('<ul>').addClass('list-group mb-3');
+
 
   // append tags
   h4.append(span1)
@@ -94,8 +108,14 @@ const drawCart = (foods, total) => {
 
   for(let item in foods) {
     drawCartItems(foods[item], ul);
+    subtotal += foods[item].price * foods[item].quantity;
   }
-  
+  let taxes = (subtotal * 0.05).toFixed(2);
+  let totalPrice = (subtotal * 1.05).toFixed(2);
+  drawPriceElement(ul2, 'Subtotal', subtotal.toFixed(2));
+  drawPriceElement(ul2, 'Tax (5%)', taxes);
+  drawPriceElement(ul2, 'Total CAD', totalPrice);
+  $(div).append(ul2);
   $('#test').prepend(div);
 }
 
@@ -104,7 +124,6 @@ $(() => {
   let total = calculateCartQuantity(cart);
   $.get('api/foods', function(foods) {
     let foodInfo = matchFood(cart, foods);
-    console.log(foodInfo);
     drawCart(foodInfo, total);
   });
 })
