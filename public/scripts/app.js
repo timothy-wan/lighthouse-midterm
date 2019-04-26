@@ -47,16 +47,43 @@ const calculateCartQuantity = (cart) => {
   return total;
 }
 
-const drawCartItems = (ul) => {
-  let li = $('<li>');
+const matchFood = (cart, foods) => {
+  let result = {};
+  for(let item in cart) {
+    if(cart[item]) {
+      foods.forEach((food) => {
+        if(food.id == item) {
+          food.quantity = cart[item];
+          result[item] = food;
+        }
+      });
+    }
+  }
+  return result;
 }
 
-const drawCart = (food) => {
+const drawCartItems = (food, ul) => {
+  // make html tags
+  let li = $('<li>').addClass('list-group-item d-flex justify-content-between lh-condensed');
+  let div = $('<div>');
+  let h5 = $('<h5>').addClass('my-0').text(food.name);
+  let small = $('<small>').addClass('text-muted').text(food.description);
+  let span = $('<span>').addClass('text-muted').text(food.quantity * food.price);
+
+  // append tags
+  div.append(h5)
+     .append(small);
+  li.append(div)
+    .append(span);
+  ul.append(li);
+}
+
+const drawCart = (foods, total) => {
   // make html tags
   let div = $('<div>').addClass('col-md-12 order-md-2 mb-4');
   let h4 = $('<h4>').addClass('d-flex justify-content-between align-items-center mb-3');
   let span1 = $('<span>').addClass('text-muted').text('Your Cart');
-  let span2 = $('<span>').addClass('badge badge-secondary badge-pill').text(2);
+  let span2 = $('<span>').addClass('badge badge-secondary badge-pill').text(total);
   let ul = $('<ul>').addClass('list-group mb-3');
 
   // append tags
@@ -65,25 +92,19 @@ const drawCart = (food) => {
   div.append(h4)
      .append(ul);
 
+  for(let item in foods) {
+    drawCartItems(foods[item], ul);
+  }
+  
   $('#test').prepend(div);
 }
 
 $(() => {
   let cart = filterStorage(window.localStorage);
   let total = calculateCartQuantity(cart);
-  console.log(total);
   $.get('api/foods', function(foods) {
-    // for(let foodid in cart) {
-    //   if(cart[foodid]) {
-    //     drawCart(foods[foodid]);
-    //   }
-    // }
+    let foodInfo = matchFood(cart, foods);
+    console.log(foodInfo);
+    drawCart(foodInfo, total);
   });
-  // for(foodid in test) {
-  //   if(test[foodid]) {
-  //     // console.log(test[foodid]);
-  //   } 
-  //   // console.log("not in cart");
-  // }
-  // // console.log(test);
 })
