@@ -4,10 +4,21 @@ width: 150px;
 
 }
 
+.food {
+
+    padding-bottom: 9px;
+}
+
 .food p {
 
     margin-bottom: 4px;
 }
+
+.food h5 {
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
 .quantity {
     display: inline-block;
     background-color: white;
