@@ -18,4 +18,20 @@
 
 .titletext {
   color: #0033cc;
+/*font-family: 'Roboto Slab', serif;*/
+/*font-family: 'Ubuntu', sans-serif;*/
+
+/*font-family: 'Merriweather', serif;*/
+/*font-family: 'Josefin Sans', sans-serif;*/
+/*font-family: 'Arvo', serif;*/
+/*font-family: 'Catamaran', sans-serif;*/
+/*font-family: 'PT Sans', sans-serif;*/
+font-family: 'Open Sans', sans-serif;
+
+
+}
+
+.navbar img {
+  height: 44px;
+  margin-left: 3px;
 }
