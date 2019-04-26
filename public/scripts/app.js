@@ -28,8 +28,13 @@ function quantityCounter(event){
 }
 
 $(() => {
-  $.get('api/foods', function(data) {
-    console.log(data);
+  let cart = window.localStorage;
+  $.get('api/foods', function(foods) {
+    for(foodid in cart) {
+      if(cart[foodid]) {
+        $('#test').append('<p>hi</p>');
+      }
+    }
   });
   // for(foodid in test) {
   //   if(test[foodid]) {
