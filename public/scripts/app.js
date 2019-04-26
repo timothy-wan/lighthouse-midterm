@@ -49,7 +49,6 @@ const drawCartItems = (food, ul) => {
   let div4 = $('<div>').addClass('wrapper text-center');
   let div5 = $('<div>').addClass('quantity');
   let div6 = $('<div>').addClass('count').text(localStorage.getItem(food.id));
-  let div7 = $('<div>').addClass('single');
   let button1 = $('<button>').addClass('decrement').text('-').attr('data-foodid', food.id);
   let button2 = $('<button>').addClass('increment').text('+').attr('data-foodid', food.id);
   let h5 = $('<h5>').addClass('my-0').text(food.name);
@@ -78,10 +77,17 @@ const drawPriceElement = (ul, label, amount) => {
   let li = $('<li>').addClass('list-group-item d-flex justify-content-between');
   let span1 = $('<span>').text(label);
   let span2 = $('<span>').addClass('text-muted').text(`$ ${amount}`);
-
-  li.append(span1)
-    .append(span2);
-  ul.append(li);
+  let strong = $('<strong>').text(`$ ${amount}`);
+  if(label === 'Total CAD') {
+    li.append(span1)
+      .append(strong);
+    ul.append(li);
+  } else {
+    li.append(span1)
+      .append(span2);
+    ul.append(li);
+  }
+  
 }
 
 // draws the users whole cart
@@ -94,7 +100,7 @@ const drawCart = (foods, total) => {
   let span2 = $('<span>').addClass('badge badge-secondary badge-pill').text(total);
   let ul = $('<ul>').addClass('list-group mb-3');
   let ul2 = $('<ul>').addClass('list-group mb-3');
-
+  let hr = $('<hr>').addClass('mb-4');
 
   // append tags
   h4.append(span1)
@@ -112,7 +118,7 @@ const drawCart = (foods, total) => {
   drawPriceElement(ul2, 'Tax (5%)', taxes);
   drawPriceElement(ul2, 'Total CAD', totalPrice);
   $(div).append(ul2);
-  $('#container').prepend(div);
+  $('#container').append(div).append(hr);
 }
 
 // passes food data in users cart to draw cart for user
