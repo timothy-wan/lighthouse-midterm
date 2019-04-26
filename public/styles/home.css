@@ -2,33 +2,3 @@
   width: 100px;
   height: 100px;
 }
-
-.bg {
-  /* The image used */
-  background-image: url("/images/boat.jpg");
-
-  /* Half height */
-  height: 50%;
-
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.titletext {
-  color: #0033cc;
-  font-family: 'Open Sans', sans-serif;
-
-}
-
-h4 {
-  font-size: 18px;
-
-  font-family: 'Catamaran', sans-serif;
-  margin-bottom: 0.7rem;
-}
-
-main .jumbotron {
-  margin-bottom: 1.4rem;
-}
