@@ -11,6 +11,7 @@ module.exports = (helpers) => {
 
   router.get("/menu", (req, res) => {
     let category = req.query.category;
+    if (!category) category = 'fish';
     helpers.getFoodData((err, foods) => {
       if(err) {
         console.error(err);
