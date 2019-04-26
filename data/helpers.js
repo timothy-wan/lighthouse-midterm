@@ -15,10 +15,39 @@ function makeHelpers(knex) {
       cb(err, res);
     })
   }
+  const getOrdersData = (cb) => {
+    knex
+    .select("*")
+    .from("orders")
+    .asCallback((err, res) => {
+      cb(err, res);
+    })
+  }
+  const insertOrder = (newid, user) => {
+    knex('orders')
+    .insert({
+      id: newid,
+      created: new Date(),
+      userid: user
+    })
+  }
+  const insertFoodForOrder = (newid, amount, order, food) => {
+    knex('orders_foods')
+    .insert({
+      id: newid,
+      quantity: amount,
+      ordersid: order,
+      foodsid: food   
+    })
+  }
+
 
   return  {
     getUserData,
-    getFoodData
+    getFoodData,
+    getOrdersData,
+    insertOrder,
+    insertFoodForOrder
   };
   
   

@@ -25,5 +25,19 @@ module.exports = (helpers) => {
     res.render("checkout");
   })
 
+  router.get("/add", (req, res) => {
+    helpers.insertOrder(4, 1)
+    res.redirect('/orders');
+  })
+
+  router.get("/orders", (req, res) => {
+    helpers.getOrdersData((err, orders) => {
+      if(err) {
+        console.error(err);
+      }
+      res.json(orders);
+    })
+  })
+
   return router;
 }
