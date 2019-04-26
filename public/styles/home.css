@@ -13,3 +13,18 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+a:link {
+  text-decoration: none;
+  color: black;
+}
+
+/* A link that has been visited */
+a:visited {
+  color: black;
+}
+
+/* A link that is hovered on */
+a:hover {
+  color: black;
+}
