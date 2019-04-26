@@ -45,7 +45,7 @@
           <div class="col-md-3 food">
             <img src="<%= food.img_src%>" class="img-thumbnail">
             <h5 class="text-center"><%= food.name %></h5>
-            <p class="text-center">$<%= food.price %></p>
+            <p class="text-center">$<%= food.price %><%= food.unitprice %></p>
             <div class="wrapper text-center">
               <div class="quantity">
                 <button class="decrement" data-foodid="<%= food.id %>">-</button>
