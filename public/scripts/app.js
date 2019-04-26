@@ -26,3 +26,14 @@ function quantityCounter(event){
     }
   }
 }
+
+$(() => {
+  let test = window.localStorage;
+  for(foodid in test) {
+    if(test[foodid]) {
+      console.log(test[foodid]);
+    } 
+    console.log("not in cart");
+  }
+  console.log(test);
+})

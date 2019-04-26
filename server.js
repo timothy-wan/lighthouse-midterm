@@ -17,6 +17,7 @@ const helpers     = require('./data/helpers')(knex);
 
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users")(helpers);
+const foodRoutes = require("./routes/foods")(helpers);
 
 // Seperate Routes for App into different module
 const appRoutes = require("./routes/appRoutes")(helpers);
@@ -41,6 +42,7 @@ app.use(express.static("public"));
 
 // Mount all resource routes
 app.use("/api/users", usersRoutes);
+app.use("/api/foods", foodRoutes);
 
 app.use('/', appRoutes);
 
