@@ -27,14 +27,57 @@ function quantityCounter(event){
   }
 }
 
-$(() => {
-  let cart = window.localStorage;
-  $.get('api/foods', function(foods) {
-    for(foodid in cart) {
-      if(cart[foodid]) {
-        $('#test').append('<p>hi</p>');
-      }
+const filterStorage = (storage) => {
+  let cart = {};
+  for(let keys in storage) {
+    if(typeof storage[keys] === 'string') {
+      cart[keys] = Number(storage[keys])
     }
+  }
+  return cart;
+}
+
+const calculateCartQuantity = (cart) => {
+  let total = 0;
+  for(let item in cart) {
+    if(cart[item]) {
+      total += cart[item];
+    }
+  }
+  return total;
+}
+
+const drawCartItems = (ul) => {
+  let li = $('<li>');
+}
+
+const drawCart = (food) => {
+  // make html tags
+  let div = $('<div>').addClass('col-md-12 order-md-2 mb-4');
+  let h4 = $('<h4>').addClass('d-flex justify-content-between align-items-center mb-3');
+  let span1 = $('<span>').addClass('text-muted').text('Your Cart');
+  let span2 = $('<span>').addClass('badge badge-secondary badge-pill').text(2);
+  let ul = $('<ul>').addClass('list-group mb-3');
+
+  // append tags
+  h4.append(span1)
+    .append(span2);
+  div.append(h4)
+     .append(ul);
+
+  $('#test').prepend(div);
+}
+
+$(() => {
+  let cart = filterStorage(window.localStorage);
+  let total = calculateCartQuantity(cart);
+  console.log(total);
+  $.get('api/foods', function(foods) {
+    // for(let foodid in cart) {
+    //   if(cart[foodid]) {
+    //     drawCart(foods[foodid]);
+    //   }
+    // }
   });
   // for(foodid in test) {
   //   if(test[foodid]) {
