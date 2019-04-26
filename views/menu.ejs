@@ -55,7 +55,6 @@
     </nav>
 
     <div class="container">
-
       <!-- Example row of columns -->
       <div class="row">
         <% foodsList.forEach((food => { %>
@@ -68,7 +67,7 @@
               <div class="quantity">
                 <button class="decrement" data-foodid="<%= food.id %>">-</button>
                 <div class="count">0</div>
-                  <button class="increment" data-foodid="<%= food.id %>">+</button>
+                <button class="increment" data-foodid="<%= food.id %>">+</button>
               </div>
             </div>
           </div>
@@ -85,10 +84,11 @@
     <p>© MEAT BOY 2017-2019</p>
   </footer>
 
-  <script type="text/javascript" src="/scripts/menu.js"></script>
+
   <script
     src="https://code.jquery.com/jquery-3.4.0.slim.js"
     integrity="sha256-milezx5lakrZu0OP9b2QWFy1ft/UEUK6NH1Jqz8hUhQ="
     crossorigin="anonymous"></script>
+  <script type="text/javascript" src="/scripts/menu.js"></script>
 </body>
 </html>
