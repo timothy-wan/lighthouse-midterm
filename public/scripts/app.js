@@ -1,32 +1,6 @@
-function writeItemQuantities() {
-  const $counts = $(".count")
-  $.each($counts, function(i, val){
-    const itemID = $(val).siblings().eq(0).attr('data-foodid');
-    if (localStorage.getItem(itemID)) {
-      $(val).html(localStorage.getItem(itemID))
-    }
-  })
-}
+/* global $ */
 
-function quantityCounter(event){
-  let buttonType = $(event.target).attr('class');
-  let foodid = $(event.target).attr('data-foodid');
-  if (buttonType === 'increment') {
-    let oldQuantity = Number(localStorage.getItem(foodid));
-    let newQuantity = oldQuantity + 1;
-    localStorage.setItem(foodid, newQuantity);
-    $(event.target).siblings('div').html(newQuantity);
-  }
-  if (buttonType === 'decrement') {
-    let oldQuantity = Number(localStorage.getItem(foodid));
-    let newQuantity = oldQuantity - 1;
-    if (newQuantity >= 0) {
-      localStorage.setItem(foodid, newQuantity);
-      $(event.target).siblings('div').html(newQuantity);
-    }
-  }
-}
-
+// filters users local storage and returns obj containing food data
 const filterStorage = (storage) => {
   let cart = {};
   for(let keys in storage) {
@@ -37,6 +11,7 @@ const filterStorage = (storage) => {
   return cart;
 }
 
+// returns how many items are currently in users cart from local storage
 const calculateCartQuantity = (cart) => {
   let total = 0;
   for(let item in cart) {
@@ -47,6 +22,7 @@ const calculateCartQuantity = (cart) => {
   return total;
 }
 
+// returns matched food data from storage of users cart
 const matchFood = (cart, foods) => {
   let result = {};
   for(let item in cart) {
@@ -62,23 +38,42 @@ const matchFood = (cart, foods) => {
   return result;
 }
 
+// helper function to draw the individual menu items of the users cart
 const drawCartItems = (food, ul) => {
   let priceTotal = (food.quantity * food.price).toFixed(2)
   // make html tags
   let li = $('<li>').addClass('list-group-item d-flex justify-content-between lh-condensed');
-  let div = $('<div>');
+  let div1 = $('<div>');
+  let div2 = $('<div>');
+  let div3 = $('<div>').addClass('counterprice');
+  let div4 = $('<div>').addClass('wrapper text-center');
+  let div5 = $('<div>').addClass('quantity');
+  let div6 = $('<div>').addClass('count').text(localStorage.getItem(food.id));
+  let div7 = $('<div>').addClass('single');
+  let button1 = $('<button>').addClass('decrement').text('-').attr('data-foodid', food.id);
+  let button2 = $('<button>').addClass('increment').text('+').attr('data-foodid', food.id);
   let h5 = $('<h5>').addClass('my-0').text(food.name);
   let small = $('<small>').addClass('text-muted').text(food.description);
-  let span = $('<span>').addClass('text-muted').text(`$ ${priceTotal}`);
+  let span1 = $('<span>').addClass('text-muted').text(`$ ${priceTotal}`);
+  let span2 = $('<span>').addClass('text-muted').text(`$ ${food.price}`);
 
   // append tags
-  div.append(h5)
+  div2.append(h5)
      .append(small);
-  li.append(div)
-    .append(span);
+  div5.append(button1)
+      .append(div6)
+      .append(button2);
+  div4.append(div5);
+  div3.append(div4)
+      .append(span2)
+      .append(span1);
+  div1.append(div2);
+  li.append(div1)
+    .append(div3);
   ul.append(li);
 }
 
+// helper function to draw the subtotal, tax, and total of users cart
 const drawPriceElement = (ul, label, amount) => {
   let li = $('<li>').addClass('list-group-item d-flex justify-content-between');
   let span1 = $('<span>').text(label);
@@ -89,6 +84,7 @@ const drawPriceElement = (ul, label, amount) => {
   ul.append(li);
 }
 
+// draws the users whole cart
 const drawCart = (foods, total) => {
   let subtotal = 0;
   // make html tags
@@ -116,14 +112,62 @@ const drawCart = (foods, total) => {
   drawPriceElement(ul2, 'Tax (5%)', taxes);
   drawPriceElement(ul2, 'Total CAD', totalPrice);
   $(div).append(ul2);
-  $('#test').prepend(div);
+  $('#container').prepend(div);
+}
+
+// passes food data in users cart to draw cart for user
+const renderCart = (cart, total) => {
+  $.get('api/foods', function(foods) {
+    let foodInfo = matchFood(cart, foods);
+    drawCart(foodInfo, total);
+  });
+}
+
+// renders page to notify user when they have an empty cart
+const renderEmptyCart = () => {
+  let div = $('<div>').addClass('text-center');
+  let h1 = $('<h1>').text('Your cart');
+  let span = $('<span>').text("Your cart is empty.");
+  let br = $('<br>');
+  let a = $('<a>').addClass('btn btn-info').attr('href', '/menu').attr('role', 'button').text('Continue Browsing Here');
+  div.append(h1)
+     .append(span)
+     .append(br)
+     .append(a);
+  $('#container').append(div);
+}
+
+// listener function for quantity selector
+function quantityCounter(event){
+  let buttonType = $(event.target).attr('class');
+  let foodid = $(event.target).attr('data-foodid');
+  if (buttonType === 'increment') {
+    let oldQuantity = Number(localStorage.getItem(foodid));
+    let newQuantity = oldQuantity + 1;
+    localStorage.setItem(foodid, newQuantity);    
+    $(event.target).siblings('div').html(newQuantity);
+    location.reload();
+  }
+  if (buttonType === 'decrement') {
+    let oldQuantity = Number(localStorage.getItem(foodid));
+    let newQuantity = oldQuantity - 1;
+    if (newQuantity >= 0) {
+      localStorage.setItem(foodid, newQuantity);
+      $(event.target).siblings('div').html(newQuantity);
+      location.reload();
+    }
+  }
 }
 
 $(() => {
   let cart = filterStorage(window.localStorage);
   let total = calculateCartQuantity(cart);
-  $.get('api/foods', function(foods) {
-    let foodInfo = matchFood(cart, foods);
-    drawCart(foodInfo, total);
-  });
+  if(total) {
+    $('#container').empty();
+    renderCart(cart, total);
+    $('#container').on('click', '.quantity', quantityCounter);
+  } else {
+    renderEmptyCart();
+  }
+  
 })
