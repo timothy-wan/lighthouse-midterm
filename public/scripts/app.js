@@ -95,6 +95,8 @@ const drawCart = (foods, total) => {
   let subtotal = 0;
   // make html tags
   let div = $('<div>').addClass('col-md-12 order-md-2 mb-4');
+  let div2 = $('<div>').addClass('d-flex justify-content-end');
+  let button = $('<button>').addClass('btn btn-light').text('Checkout');
   let h4 = $('<h4>').addClass('d-flex justify-content-between align-items-center mb-3');
   let span1 = $('<span>').addClass('text-muted').text('Your Cart');
   let span2 = $('<span>').addClass('badge badge-secondary badge-pill').text(total);
@@ -107,6 +109,7 @@ const drawCart = (foods, total) => {
     .append(span2);
   div.append(h4)
      .append(ul);
+  div2.append(button);
 
   for(let item in foods) {
     drawCartItems(foods[item], ul);
@@ -118,7 +121,7 @@ const drawCart = (foods, total) => {
   drawPriceElement(ul2, 'Tax (5%)', taxes);
   drawPriceElement(ul2, 'Total CAD', totalPrice);
   $(div).append(ul2);
-  $('#container').append(div).append(hr);
+  $('#container').append(div).append(div2).append(hr);
 }
 
 // passes food data in users cart to draw cart for user
