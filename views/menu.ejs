@@ -42,7 +42,7 @@
             <a class="nav-link" href="?category=fish">FISH</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="?category=crustaceans">CRUSTACEANS</a>
+            <a class="nav-link" href="?category=crustacean">CRUSTACEANS</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="?category=shellfish">SHELLFISH</a>
@@ -56,12 +56,13 @@
     <div class="container">
       <!-- Example row of columns -->
       <div class="row">
-        <% foodsList.forEach((food => { %>
+        <% foodsList.forEach(food => console.log(food.category))%>
+        <% foodsList.filter(food => food.category === category).forEach((food => { %>
           <div class="col-md-3 food">
             <img src="<%= food.img_src%>" class="img-thumbnail">
             <h5 class="text-center"><%= food.name %></h5>
             <p class="text-center">$<%= food.price %></p>
-            <!-- <p class="text-center"><%= category %></p> -->
+            <p class="text-center"><%= category %></p>
             <div class="wrapper text-center">
               <div class="quantity">
                 <button class="decrement" data-foodid="<%= food.id %>">-</button>
