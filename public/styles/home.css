@@ -28,7 +28,16 @@
 /*font-family: 'PT Sans', sans-serif;*/
 font-family: 'Open Sans', sans-serif;
 
+}
 
+h4 {
+  font-size: 18px;
+  font-family: 'Catamaran', sans-serif;
+  margin-bottom: 0.7rem;
+}
+
+main .jumbotron {
+  margin-bottom: 1.4rem;
 }
 
 .navbar img {
