@@ -4,7 +4,9 @@ $(()=>{
     const $counts = $(".count")
     $.each($counts, function(i, val){
       const itemID = $(val).siblings().eq(0).attr('data-foodid');
-      $(val).html(localStorage.getItem(itemID))
+      if (localStorage.getItem(itemID)) {
+        $(val).html(localStorage.getItem(itemID))
+      }
     })
     .siblings().eq(0);
 
