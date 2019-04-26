@@ -8,19 +8,21 @@ module.exports = (helpers) => {
   router.get("/", (req, res) => {
     res.render("index");
   });
-  
+
   router.get("/menu", (req, res) => {
+    let category = req.query.category;
     helpers.getFoodData((err, foods) => {
       if(err) {
         console.error(err);
       }
       let templateVars = {
-        foodsList: foods
+        foodsList: foods,
+        category: category
       }
       res.render("menu", templateVars);
     })
   });
-  
+
   router.get("/cart", (req, res) => {
     res.render("checkout");
   })
