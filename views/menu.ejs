@@ -40,7 +40,6 @@
     <div class="container">
       <!-- Example row of columns -->
       <div class="row">
-        <% foodsList.forEach(food => console.log(food.category))%>
         <% foodsList.filter(food => food.category === category).forEach((food => { %>
           <div class="col-md-3 food">
             <img src="<%= food.img_src%>" class="img-thumbnail">
