@@ -24,6 +24,7 @@ module.exports = (helpers, client, msgRes) => {
     res.end(twiml.toString());
   });
 
+  
   router.get("/menu", (req, res) => {
     let category = req.query.category;
     if (!category) category = 'fish';
@@ -38,7 +39,15 @@ module.exports = (helpers, client, msgRes) => {
       res.render("menu", templateVars);
     })
   });
-
+  
+  router.post("/cart", (req, res) => {
+    const orderID = helpers.generateRandomString();
+    helpers.insertOrder(orderID, 1);
+    req.body.cart.forEach((item) => {
+      console.log(item);
+    })
+    res.redirect('/cart');
+  });
   router.get("/cart", (req, res) => {
     res.render("checkout");
   })

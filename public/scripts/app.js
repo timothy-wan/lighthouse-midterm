@@ -96,7 +96,7 @@ const drawCart = (foods, total) => {
   // make html tags
   let div = $('<div>').addClass('col-md-12 order-md-2 mb-4');
   let div2 = $('<div>').addClass('d-flex justify-content-end');
-  let button = $('<button>').addClass('btn btn-light').text('Checkout');
+  let button = $('<button>').addClass('btn btn-light checkout').text('Checkout');
   let h4 = $('<h4>').addClass('d-flex justify-content-between align-items-center mb-3');
   let span1 = $('<span>').addClass('text-muted').text('Your Cart');
   let span2 = $('<span>').addClass('badge badge-secondary badge-pill').text(total);
@@ -167,14 +167,22 @@ function quantityCounter(event){
     }
   }
 }
+const cart = filterStorage(window.localStorage);
+const total = calculateCartQuantity(cart);
+
+const postCart = () => {
+  $.get('api/foods', function(foods) {
+    let foodInfo = matchFood(cart, foods);
+    $.post('/cart', {cart: foodInfo});
+  });
+}
 
 $(() => {
-  let cart = filterStorage(window.localStorage);
-  let total = calculateCartQuantity(cart);
   if(total) {
     $('#container').empty();
     renderCart(cart, total);
     $('#container').on('click', '.quantity', quantityCounter);
+    $('#container').on('click', '.checkout', postCart);
   } else {
     renderEmptyCart();
   }
