@@ -34,12 +34,13 @@ function makeHelpers(knex) {
       cb(err, res);
     })
   }
+
   const insertOrder = (newid, user) => {
     return knex('orders')
     .insert({
       id: newid,
       created: new Date(),
-      status: 'unconfirmed',
+      status: 'pending',
       userid: user
     })
     .returning('id')
