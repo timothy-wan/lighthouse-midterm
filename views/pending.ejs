@@ -25,18 +25,33 @@
       <div class="row mb-3">
         <div class="col-4 themed-grid-col text-center"></div>
         <div class="col-4 themed-grid-col text-center">
-          <div id='order' data-orderid="<%= order.id %>">Order # <%= order.id %></div>
+          <div id='order' data-orderid="<%= order.id %>"><h4>Order # <%= order.id %></h4></div>
           <div>Placed: <%= order.created.toDateString() %></div>
-          <div id='status' data-orderstatus="<%= order.status %>">Status: <%= order.status %></div>
+          <div id='status' data-orderstatus="<%= order.status %>">Status: <%= order.status %><span id="dots" style="position:absolute;"></span></div>
+          <div id='animation'><img src="/images/animation/crab1.png" style="height:80px;"></div>
         </div>
         <div class="col-4 themed-grid-col text-center"></div>
       </div>
 
       <div class="row border-top border-left border-right border-secondary ">
-        <div class="col-6 border border-secondary"><h4>item</h4></div>
-        <div class="col-2 border border-secondary text-center">quantity</div>
-        <div class="col-2 border border-secondary text-center">price</div>
-        <div class="col-2 border border-secondary text-center">total</div>
+        <div class="col-6 border border-secondary"><h5 class="mb-0">item</h5></div>
+        <div class="col-2 border border-secondary text-center"><h5 class="mb-0">quantity</h5></div>
+        <div class="col-2 border border-secondary text-center"><h5 class="mb-0">price</h5></div>
+        <div class="col-2 border border-secondary text-center"><h5 class="mb-0">total</h5></div>
+      </div>
+
+      <div class="row border-left border-right border-secondary ">
+        <div class="col-6 border border-secondary ">crab</div>
+        <div class="col-2 border border-secondary text-center">4</div>
+        <div class="col-2 border border-secondary text-center">$15/kg</div>
+        <div class="col-2 border border-secondary text-center">$400</div>
+      </div>
+
+      <div class="row border-left border-right border-secondary ">
+        <div class="col-6 border border-secondary ">crab</div>
+        <div class="col-2 border border-secondary text-center">4</div>
+        <div class="col-2 border border-secondary text-center">$15/kg</div>
+        <div class="col-2 border border-secondary text-center">$400</div>
       </div>
 
       <div class="row border-left border-right border-secondary ">
@@ -52,6 +67,8 @@
         <div class="col-2 border border-secondary text-center">$15/kg</div>
         <div class="col-2 border border-secondary text-center">$400</div>
       </div>
+
+
       <hr>
 
     </div><!-- /container -->
