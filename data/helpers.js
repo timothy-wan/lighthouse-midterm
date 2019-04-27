@@ -1,18 +1,20 @@
 function makeHelpers(knex) {
-  const getUserData = (cb) => {
-    knex
+  const getUserData = () => {
+    return knex
     .select("*")
     .from("users")
-    .asCallback((err, res) => {
-      cb(err, res);
+    .returning('id')
+    .then((id) => {
+      return Promise.resolve(id);
     })
   }
-  const getFoodData = (cb) => {
-    knex
+  const getFoodData = () => {
+    return knex
     .select("*")
     .from("foods")
-    .asCallback((err, res) => {
-      cb(err, res);
+    .returning('id')
+    .then((id) => {
+      return Promise.resolve(id);
     })
   }
 
@@ -37,12 +39,13 @@ function makeHelpers(knex) {
     })
   }
 
-  const getOrdersData = (cb) => {
-    knex
+  const getOrdersData = () => {
+    return knex
     .select("*")
     .from("orders")
-    .asCallback((err, res) => {
-      cb(err, res);
+    .returning('id')
+    .then((id) => {
+      return Promise.resolve(id);
     })
   }
 
@@ -60,7 +63,6 @@ function makeHelpers(knex) {
     })
   }
   const insertFoodForOrder = (values) => {
-
     return knex('orders_foods')
     .insert(values)
     .returning('id')
@@ -69,6 +71,17 @@ function makeHelpers(knex) {
     })
   }
 
+  const alterOrderStatus = (idToEdit, eta) => {
+    return knex('orders')
+    .where('id','=', idToEdit)
+    .update({
+      status: 'confirmed',
+      eta: eta
+    }).returning('*')
+    .then((id) => {
+      return Promise.resolve(id);
+    })
+  }
 
   return  {
     getUserData,
@@ -77,7 +90,8 @@ function makeHelpers(knex) {
     getCartData,
     getOrdersData,
     insertOrder,
-    insertFoodForOrder
+    insertFoodForOrder,
+    alterOrderStatus
   };
 
 
