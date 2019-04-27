@@ -6,13 +6,9 @@ const router  = express.Router();
 module.exports = (helpers) => {
 
   router.get("/", (req, res) => {
-    helpers.getOrdersData((err, orders) => {
-      console.log(orders)
-      if(err) {
-        console.error(err);
-      }
+    helpers.getOrdersData().then((orders) => {
       res.json(orders);
-    })
+    });
   });
 
   return router;

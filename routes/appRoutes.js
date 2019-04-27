@@ -24,14 +24,16 @@ module.exports = (helpers, client, msgRes) => {
     res.end(twiml.toString());
   });
 
-  
+  router.get('/test', (req, res) => {
+    helpers.alterOrderStatus(1, 20).then((result) => {
+      res.json(result);
+    })
+  });
+
   router.get("/menu", (req, res) => {
     let category = req.query.category;
     if (!category) category = 'fish';
-    helpers.getFoodData((err, foods) => {
-      if(err) {
-        console.error(err);
-      }
+    helpers.getFoodData().then((foods) => {
       let templateVars = {
         foodsList: foods,
         category: category
@@ -46,7 +48,7 @@ module.exports = (helpers, client, msgRes) => {
     let valuesToInsert = [];
 
     let newOrder = helpers.insertOrder(orderID, 1);
-    newOrder.then(()=>{
+    newOrder.then(() => {
       req.body.cart.forEach((item) => {
         let value = {};
         value.quantity = item.quantity;
