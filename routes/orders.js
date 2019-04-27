@@ -7,7 +7,6 @@ module.exports = (helpers) => {
 
   router.get("/", (req, res) => {
     helpers.getOrdersData((err, orders) => {
-      console.log(orders)
       if(err) {
         console.error(err);
       }

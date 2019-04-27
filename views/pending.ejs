@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/styles/menu.css">
     <link rel="stylesheet" href="/styles/layout.css">
     <link rel="stylesheet" href="/styles/home.css">
-
+    <link rel="stylesheet" href="/styles/checkout.css">
     <title>Menu</title>
   </head>
 
@@ -32,40 +32,61 @@
       </div>
 
       <!-- list of items -->
-      <div class="row">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">Item</th>
-              <th scope="col">Quantity</th>
-              <th scope="col">Price</th>
-              <th scope="col">Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% cart.forEach(item => { console.log(item);%>
-              <tr>
-                <th scope="row"><%= item.name %></th>
-                <td><%= item.quantity %></td>
-                <td><%= item.price + item.unitprice%></td>
-                <td><%= '$' + Number(item.quantity) * parseInt(item.price) %></td>
-              </tr>
-            <% }) %>
-          </tbody>
-          <tbody>
-              <tr>
-                <th scope="row"></th>
-                <td><%= item.quantity %></td>
-                <td><%= item.price + item.unitprice%></td>
-                <td><%= '$' + Number(item.quantity) * parseInt(item.price) %></td>
-              </tr>
-          </tbody>
-        </table>
-      </div>
 
 
-      <hr>
-      <% cart.forEach(item => {}) %>
+
+
+
+
+<div class="container mt-4" id="container">
+  <div class="col-md-12 order-md-2 mb-4">
+    <ul class="list-group mb-3">
+      <!-- ITEM LOOP -->
+      <% cart.forEach(item => { console.log(item);%>
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <div>
+            <div>
+              <h5 class="my-0"><%= item.name %></h5>
+              <small class="text-muted"><%= item.description %></small>
+            </div>
+          </div>
+          <div class="counterprice">
+            <div class="wrapper text-center">
+              <div class="quantity">
+
+                <div class="count" style="height:27px"><%= item.quantity %></div>
+
+              </div>
+            </div>
+            <span class="text-muted">$ <%= item.price + item.unitprice%></span>
+            <span class="text-muted"><%= '$' + (Number(item.quantity) * parseInt(item.price)).toFixed(2) %></span>
+          </div>
+        </li>
+      <% }) %>
+
+    </ul>
+    <ul class="list-group mb-3">
+      <li class="list-group-item d-flex justify-content-between">
+        <span>Subtotal</span>
+        <span class="text-muted">
+          <% let beforeTax = cart.reduce((acc, cur) => acc + (cur.price * cur.quantity), 0).toFixed(2) %>
+          $<%= beforeTax %>
+        </span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between">
+        <span>Tax (5%)</span>
+        <% let tax =  (beforeTax * 0.05).toFixed(2) %>
+        <span class="text-muted">$ <%= tax %></span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between">
+        <span>Total CAD</span>
+        <strong>$ <%= (Number(tax) + Number(beforeTax)).toFixed(2) %></strong>
+      </li>
+    </ul>
+  </div>
+  <hr class="mb-4">
+</div>
+
 
     </div><!-- /container -->
   </main>
