@@ -39,14 +39,14 @@ module.exports = (helpers, client, msgRes) => {
       res.render("menu", templateVars);
     })
   });
+  
   let orderID = 1;
 
   router.post("/cart", (req, res) => {
     let valuesToInsert = [];
 
     let newOrder = helpers.insertOrder(orderID, 1);
-    newOrder.then((response)=>{
-      console.log(response);
+    newOrder.then(()=>{
       req.body.cart.forEach((item) => {
         let value = {};
         value.quantity = item.quantity;
@@ -55,7 +55,7 @@ module.exports = (helpers, client, msgRes) => {
         valuesToInsert.push(value);
       });
       let result = helpers.insertFoodForOrder(valuesToInsert);
-      result.then((value) =>{
+      result.then(() =>{
         res.json({
           result: true,
           url: `http://localhost:8080/orders/${orderID}`
@@ -85,7 +85,6 @@ module.exports = (helpers, client, msgRes) => {
           res.status(404).send('Invalid order #')
       }
     })
-      // if (result) {
   });
 
   return router;
