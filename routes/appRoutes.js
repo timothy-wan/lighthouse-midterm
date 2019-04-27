@@ -34,7 +34,7 @@ module.exports = (helpers) => {
         console.error(err)
       }
       let templateVars = {
-        status: orders.filter(o => o.id === Number(req.params.id))
+        status: orders.filter(order => order.id === Number(req.params.id))
       }
       res.send(templateVars)
     })
