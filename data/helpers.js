@@ -15,6 +15,10 @@ function makeHelpers(knex) {
       cb(err, res);
     })
   }
+
+  // TODO -> select one order by ID
+
+
   const getOrdersData = (cb) => {
     knex
     .select("*")
@@ -37,7 +41,7 @@ function makeHelpers(knex) {
       id: newid,
       quantity: amount,
       ordersid: order,
-      foodsid: food   
+      foodsid: food
     })
   }
 
@@ -49,8 +53,8 @@ function makeHelpers(knex) {
     insertOrder,
     insertFoodForOrder
   };
-  
-  
+
+
 }
 
 module.exports = makeHelpers;

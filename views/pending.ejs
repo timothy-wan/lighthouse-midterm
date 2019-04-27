@@ -25,9 +25,9 @@
       <div class="row mb-3">
         <div class="col-4 themed-grid-col text-center"></div>
         <div class="col-4 themed-grid-col text-center">
-          <div>Order # <%= order.id %></div>
+          <div id='order' data-orderid="<%= order.id %>">Order # <%= order.id %></div>
           <div>Placed: <%= order.created.toDateString() %></div>
-          <div>Status: <%= order.status %></div>
+          <div id='status' data-orderstatus="<%= order.status %>">Status: <%= order.status %></div>
         <div class="col-4 themed-grid-col text-center"></div>
       </div>
 
