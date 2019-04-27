@@ -28,13 +28,33 @@
           <div id='order' data-orderid="<%= order.id %>">Order # <%= order.id %></div>
           <div>Placed: <%= order.created.toDateString() %></div>
           <div id='status' data-orderstatus="<%= order.status %>">Status: <%= order.status %></div>
+        </div>
         <div class="col-4 themed-grid-col text-center"></div>
       </div>
 
-    <hr>
-    </div>
-    </div> <!-- /container -->
+      <div class="row border-top border-left border-right border-secondary ">
+        <div class="col-6 border border-secondary"><h4>item</h4></div>
+        <div class="col-2 border border-secondary text-center">quantity</div>
+        <div class="col-2 border border-secondary text-center">price</div>
+        <div class="col-2 border border-secondary text-center">total</div>
+      </div>
 
+      <div class="row border-left border-right border-secondary ">
+        <div class="col-6 border border-secondary ">crab</div>
+        <div class="col-2 border border-secondary text-center">4</div>
+        <div class="col-2 border border-secondary text-center">$15/kg</div>
+        <div class="col-2 border border-secondary text-center">$400</div>
+      </div>
+
+      <div class="row border-left border-right border-bottom border-secondary ">
+        <div class="col-6 border border-secondary ">crab</div>
+        <div class="col-2 border border-secondary text-center">4</div>
+        <div class="col-2 border border-secondary text-center">$15/kg</div>
+        <div class="col-2 border border-secondary text-center">$400</div>
+      </div>
+      <hr>
+
+    </div><!-- /container -->
   </main>
   <% include partials/_footer %>
 
