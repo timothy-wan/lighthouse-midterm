@@ -14,17 +14,17 @@ module.exports = (helpers, client, msgRes) => {
   // .then(message => console.log(message.sid));
     res.render("index");
   });
-  
+
   router.post('/sms', (req, res) => {
     const twiml = new msgRes();
-  
+
     twiml.message('The Robots are coming! Head for the hills!');
-  
+
     res.writeHead(200, {'Content-Type': 'text/xml'});
     res.end(twiml.toString());
   });
 
-  
+
   router.get("/menu", (req, res) => {
     let category = req.query.category;
     if (!category) category = 'fish';
@@ -62,9 +62,9 @@ module.exports = (helpers, client, msgRes) => {
         });
         orderID++;
       });
-    });      
+    });
   });
-  
+
   router.get("/cart", (req, res) => {
     res.render("checkout");
   })
@@ -80,13 +80,16 @@ module.exports = (helpers, client, msgRes) => {
             templateVars.order = result[0];
             templateVars.cart = cart;
             res.render("pending", templateVars);
-          })    
+          })
       } else {
           res.status(404).send('Invalid order #')
       }
     })
-      // if (result) {
   });
+
+  router.get("/admin", (req, res) => {
+    res.render('admin')
+  })
 
   return router;
 }
