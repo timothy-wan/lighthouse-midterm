@@ -40,11 +40,22 @@ module.exports = (helpers, client, msgRes) => {
     })
   });
   let orderID = 8;
+  let orders_foodsID = 6;
   router.post("/cart", (req, res) => {
-    helpers.insertOrder(orderID, 1, () => {});
-    // let object = [{id: 6,quantity:6,ordersid: 1,foodsid:5},{id: 7,quantity: 7,ordersid:1, foodsid:7}]
-    helpers.insertFoodForOrder(object, () => {
-
+    let valuesToInsert = [];
+    helpers.insertOrder(orderID, 1, () => {
+      req.body.cart.forEach((item) => {
+        let value = {};
+        value.id = orders_foodsID++;
+        value.quantity = item.quantity;
+        value.ordersid = orderID;
+        value.foodsid = item.id;
+        valuesToInsert.push(value);
+      })
+      helpers.insertFoodForOrder(valuesToInsert, () => {
+  
+      });
+      orderID++;
     });
     res.redirect('/cart');
   });
