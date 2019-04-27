@@ -53,11 +53,10 @@ module.exports = (helpers, client, msgRes) => {
         valuesToInsert.push(value);
       })
       helpers.insertFoodForOrder(valuesToInsert, () => {
-  
+        orderID++;
       });
-      orderID++;
     });
-    res.redirect('/cart');
+    res.redirect(`/orders/${orderID}`);
   });
   
   router.get("/cart", (req, res) => {
