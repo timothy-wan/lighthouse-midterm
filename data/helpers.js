@@ -57,6 +57,7 @@ function makeHelpers(knex) {
     })
   }
 
+
   return  {
     getUserData,
     getFoodData,

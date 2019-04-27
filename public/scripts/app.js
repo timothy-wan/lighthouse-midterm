@@ -176,6 +176,7 @@ const postCart = () => {
     $.post('/cart', {cart: foodInfo}, (res) => {
       if(res.result==true){
          window.location = res.url;
+         localStorage.clear();
       } else{
         alert("There was an error creating your order");
       }
