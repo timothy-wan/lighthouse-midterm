@@ -51,5 +51,5 @@ app.use("/api/orders", ordersRoutes);
 app.use('/', appRoutes);
 
 app.listen(PORT, '0.0.0.0', () => {
-  console.log("Crab juice stand started!" + PORT);
+  console.log("Crab juice stand started on " + PORT);
 });
