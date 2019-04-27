@@ -8,7 +8,10 @@ const express     = require("express");
 const bodyParser  = require("body-parser");
 const sass        = require("node-sass-middleware");
 const app         = express();
-
+const accountSid  = process.env.TWILIO_SID;
+const authToken   = process.env.TWILIO_TOKEN;
+const client      = require('twilio')(accountSid, authToken);
+const msgRes = require('twilio').twiml.MessagingResponse;
 const knexConfig  = require("./knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
 const morgan      = require('morgan');
@@ -20,7 +23,7 @@ const usersRoutes = require("./routes/users")(helpers);
 const foodRoutes = require("./routes/foods")(helpers);
 
 // Seperate Routes for App into different module
-const appRoutes = require("./routes/appRoutes")(helpers);
+const appRoutes = require("./routes/appRoutes")(helpers, client, msgRes);
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
