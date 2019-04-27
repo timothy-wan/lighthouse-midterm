@@ -46,6 +46,7 @@ module.exports = (helpers, client, msgRes) => {
 
     let newOrder = helpers.insertOrder(orderID, 1);
     newOrder.then((response)=>{
+      console.log(response);
       req.body.cart.forEach((item) => {
         let value = {};
         value.quantity = item.quantity;
