@@ -32,39 +32,35 @@
       </div>
 
       <!-- list of items -->
-      <div class="row border-top border-left border-right border-secondary ">
-        <div class="col-6 border border-secondary"><h5 class="mb-0">item</h5></div>
-        <div class="col-2 border border-secondary text-center"><h5 class="mb-0">quantity</h5></div>
-        <div class="col-2 border border-secondary text-center"><h5 class="mb-0">price</h5></div>
-        <div class="col-2 border border-secondary text-center"><h5 class="mb-0">total</h5></div>
-      </div>
-
-      <div class="row border-left border-right border-secondary ">
-        <div class="col-6 border border-secondary ">crab</div>
-        <div class="col-2 border border-secondary text-center">4</div>
-        <div class="col-2 border border-secondary text-center">$15/kg</div>
-        <div class="col-2 border border-secondary text-center">$400</div>
-      </div>
-
-      <div class="row border-left border-right border-secondary ">
-        <div class="col-6 border border-secondary ">crab</div>
-        <div class="col-2 border border-secondary text-center">4</div>
-        <div class="col-2 border border-secondary text-center">$15/kg</div>
-        <div class="col-2 border border-secondary text-center">$400</div>
-      </div>
-
-      <div class="row border-left border-right border-secondary ">
-        <div class="col-6 border border-secondary ">crab</div>
-        <div class="col-2 border border-secondary text-center">4</div>
-        <div class="col-2 border border-secondary text-center">$15/kg</div>
-        <div class="col-2 border border-secondary text-center">$400</div>
-      </div>
-
-      <div class="row border-left border-right border-bottom border-secondary ">
-        <div class="col-6 border border-secondary ">crab</div>
-        <div class="col-2 border border-secondary text-center">4</div>
-        <div class="col-2 border border-secondary text-center">$15/kg</div>
-        <div class="col-2 border border-secondary text-center">$400</div>
+      <div class="row">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Item</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Price</th>
+              <th scope="col">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% cart.forEach(item => { console.log(item);%>
+              <tr>
+                <th scope="row"><%= item.name %></th>
+                <td><%= item.quantity %></td>
+                <td><%= item.price + item.unitprice%></td>
+                <td><%= '$' + Number(item.quantity) * parseInt(item.price) %></td>
+              </tr>
+            <% }) %>
+          </tbody>
+          <tbody>
+              <tr>
+                <th scope="row"></th>
+                <td><%= item.quantity %></td>
+                <td><%= item.price + item.unitprice%></td>
+                <td><%= '$' + Number(item.quantity) * parseInt(item.price) %></td>
+              </tr>
+          </tbody>
+        </table>
       </div>
 
 
