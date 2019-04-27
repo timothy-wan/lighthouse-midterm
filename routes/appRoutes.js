@@ -9,6 +9,7 @@ module.exports = (helpers) => {
     res.render("index");
   });
 
+  
   router.get("/menu", (req, res) => {
     let category = req.query.category;
     if (!category) category = 'fish';
@@ -23,16 +24,24 @@ module.exports = (helpers) => {
       res.render("menu", templateVars);
     })
   });
-
+  
+  router.post("/cart", (req, res) => {
+    const orderID = helpers.generateRandomString();
+    helpers.insertOrder(orderID, 1);
+    req.body.cart.forEach((item) => {
+      console.log(item);
+    })
+    res.redirect('/cart');
+  });
   router.get("/cart", (req, res) => {
     res.render("checkout");
   })
-
+  
   router.get("/add", (req, res) => {
     helpers.insertOrder(4, 1)
     res.redirect('/orders');
   })
-
+  
   router.get("/orders", (req, res) => {
     helpers.getOrdersData((err, orders) => {
       if(err) {
@@ -41,6 +50,6 @@ module.exports = (helpers) => {
       res.json(orders);
     })
   })
-
+  
   return router;
 }
