@@ -34,9 +34,9 @@ module.exports = (helpers) => {
         console.error(err)
       }
       let templateVars = {
-        status: orders.filter(order => order.id === Number(req.params.id))
+        order: orders.filter(order => order.id === Number(req.params.id))
       }
-      res.send(templateVars)
+      res.render("pending", templateVars)
     })
   });
 
