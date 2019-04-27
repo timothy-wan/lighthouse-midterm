@@ -53,22 +53,22 @@ module.exports = (helpers, client, msgRes) => {
   })
 
   router.get("/orders/:id", (req, res) => {
-    helpers.getOrdersData((err, orders) => {
+    helpers.getOrder(req.params.id, (err, order)=>{
       if(err) {
-        console.error(err)
+        console.error(err);
+        return;
       }
-      let order = orders.filter(order => order.id === Number(req.params.id))[0];
-      let templateVars = {
-        order: order
+
+      const templateVars = {
+        order: order[0]
       }
+
       if (order) {
         res.render("pending", templateVars);
       } else {
         res.status(404).send('Invalid order #')
       }
-
-
-    })
+    });
   });
 
   return router;

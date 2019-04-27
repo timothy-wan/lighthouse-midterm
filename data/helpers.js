@@ -16,8 +16,15 @@ function makeHelpers(knex) {
     })
   }
 
-  // TODO -> select one order by ID
-
+  const getOrder = (id, cb) => {
+    knex
+    .select("*")
+    .from("orders")
+    .where('id', id)
+    .asCallback((err, res) => {
+      cb(err, res);
+    })
+  }
 
   const getOrdersData = (cb) => {
     knex
@@ -60,6 +67,7 @@ function makeHelpers(knex) {
   return  {
     getUserData,
     getFoodData,
+    getOrder,
     getOrdersData,
     insertOrder,
     insertFoodForOrder,
