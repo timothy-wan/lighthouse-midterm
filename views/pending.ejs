@@ -17,11 +17,9 @@
 <body>
   <% include partials/_header %>
   <main role="main">
-    <!-- FOOD CATEGORY -->
     <br>
-
     <div class="container">
-      <!-- Example row of columns -->
+      <!-- order info -->
       <div class="row mb-3">
         <div class="col-4 themed-grid-col text-center"></div>
         <div class="col-4 themed-grid-col text-center">
@@ -33,6 +31,7 @@
         <div class="col-4 themed-grid-col text-center"></div>
       </div>
 
+      <!-- list of items -->
       <div class="row border-top border-left border-right border-secondary ">
         <div class="col-6 border border-secondary"><h5 class="mb-0">item</h5></div>
         <div class="col-2 border border-secondary text-center"><h5 class="mb-0">quantity</h5></div>
@@ -70,7 +69,7 @@
 
 
       <hr>
-      <% console.log(cart[0].name) %>
+      <% cart.forEach(item => {}) %>
 
     </div><!-- /container -->
   </main>
