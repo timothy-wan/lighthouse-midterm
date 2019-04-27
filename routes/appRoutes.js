@@ -28,20 +28,15 @@ module.exports = (helpers) => {
     res.render("checkout");
   })
 
-  router.get("/orders", (req, res) => {
-    helpers.getOrdersData((err, orders) => {
-      if(err) {
-        console.error(err);
-      }
-      res.json(orders);
-    })
-  })
-
   router.get("/orders/:id", (req, res) => {
     helpers.getOrdersData((err, orders) => {
       if(err) {
         console.error(err)
       }
+      let templateVars = {
+        status: orders.filter(o => o.id === Number(req.params.id))
+      }
+      res.send(templateVars)
     })
   });
 
