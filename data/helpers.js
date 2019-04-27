@@ -34,20 +34,26 @@ function makeHelpers(knex) {
       cb(err, res);
     })
   }
-  const insertOrder = (newid, user, cb) => {
-    knex('orders')
+  const insertOrder = (newid, user) => {
+    return knex('orders')
     .insert({
       id: newid,
       created: new Date(),
       status: 'unconfirmed',
       userid: user
-    }).asCallback((err, res) => {
-      cb(err,res);
+    })
+    .returning('id')
+    .then((id)=>{
+      return Promise.resolve(id);
     })
   }
-  const insertFoodForOrder = (values, cb) => {
-    knex.insert(values).into('orders_foods').asCallback((err, res) => {
-      cb(err, res);
+  const insertFoodForOrder = (values) => {
+
+    return knex('orders_foods')
+    .insert(values)
+    .returning('id')
+    .then((id) =>{
+      return Promise.resolve(id);
     })
   }
 
