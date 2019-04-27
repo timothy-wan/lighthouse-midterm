@@ -5,13 +5,13 @@ const router  = express.Router();
 
 module.exports = (helpers, client, msgRes) => {
   router.get("/", (req, res) => {
-    client.messages
-  .create({
-     body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
-     from: '+16042600721',
-     to: '+17783193398'
-   })
-  .then(message => console.log(message.sid));
+  //   client.messages
+  // .create({
+  //    body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
+  //    from: '+16042600721',
+  //    to: '+17783193398'
+  //  })
+  // .then(message => console.log(message.sid));
     res.render("index");
   });
   
@@ -39,15 +39,31 @@ module.exports = (helpers, client, msgRes) => {
       res.render("menu", templateVars);
     })
   });
-  
+  let orderID = 1;
+
   router.post("/cart", (req, res) => {
-    const orderID = helpers.generateRandomString();
-    helpers.insertOrder(orderID, 1);
-    req.body.cart.forEach((item) => {
-      console.log(item);
-    })
-    res.redirect('/cart');
+    let valuesToInsert = [];
+
+    let newOrder = helpers.insertOrder(orderID, 1);
+    newOrder.then((response)=>{
+      req.body.cart.forEach((item) => {
+        let value = {};
+        value.quantity = item.quantity;
+        value.ordersid = orderID;
+        value.foodsid = item.id;
+        valuesToInsert.push(value);
+      });
+      let result = helpers.insertFoodForOrder(valuesToInsert);
+      result.then((value) =>{
+        res.json({
+          result: true,
+          url: `http://localhost:8080/orders/${orderID}`
+        });
+        orderID++;
+      });
+    });      
   });
+  
   router.get("/cart", (req, res) => {
     res.render("checkout");
   })

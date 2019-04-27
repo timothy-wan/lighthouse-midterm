@@ -1,3 +1,5 @@
+/* global $ */
+
 function writeItemQuantities() {
   const $counts = $(".count")
   $.each($counts, function(i, val){

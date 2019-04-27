@@ -173,7 +173,14 @@ const total = calculateCartQuantity(cart);
 const postCart = () => {
   $.get('api/foods', function(foods) {
     let foodInfo = matchFood(cart, foods);
-    $.post('/cart', {cart: foodInfo});
+    $.post('/cart', {cart: foodInfo}, (res) => {
+      if(res.result==true){
+         window.location = res.url;
+      } else{
+        alert("There was an error creating your order");
+      }
+     
+    });
   });
 }
 
