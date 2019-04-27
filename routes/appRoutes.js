@@ -5,13 +5,13 @@ const router  = express.Router();
 
 module.exports = (helpers, client, msgRes) => {
   router.get("/", (req, res) => {
-    client.messages
-  .create({
-     body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
-     from: '+16042600721',
-     to: '+17783193398'
-   })
-  .then(message => console.log(message.sid));
+  //   client.messages
+  // .create({
+  //    body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
+  //    from: '+16042600721',
+  //    to: '+17783193398'
+  //  })
+  // .then(message => console.log(message.sid));
     res.render("index");
   });
   
@@ -39,15 +39,16 @@ module.exports = (helpers, client, msgRes) => {
       res.render("menu", templateVars);
     })
   });
-  
+  let orderID = 8;
   router.post("/cart", (req, res) => {
-    const orderID = helpers.generateRandomString();
-    helpers.insertOrder(orderID, 1);
-    req.body.cart.forEach((item) => {
-      console.log(item);
-    })
+    helpers.insertOrder(orderID, 1, () => {});
+    // let object = [{id: 6,quantity:6,ordersid: 1,foodsid:5},{id: 7,quantity: 7,ordersid:1, foodsid:7}]
+    helpers.insertFoodForOrder(object, () => {
+
+    });
     res.redirect('/cart');
   });
+  
   router.get("/cart", (req, res) => {
     res.render("checkout");
   })
