@@ -1,9 +1,44 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title></title>
-</head>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles/menu.css">
+    <link rel="stylesheet" href="/styles/layout.css">
+    <link rel="stylesheet" href="/styles/home.css">
+
+    <title>Menu</title>
+  </head>
+
 <body>
-  <h1> LOL HEHEHEHEHHE <%= order %></h1>
+  <% include partials/_header %>
+  <main role="main">
+    <!-- FOOD CATEGORY -->
+    <br>
+
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row mb-3">
+        <div class="col-4 themed-grid-col text-center"></div>
+        <div class="col-4 themed-grid-col text-center">
+          <div>Order # <%= order.id %></div>
+          <div>Placed: <%= order.created.toDateString() %></div>
+        <div class="col-4 themed-grid-col text-center"></div>
+      </div>
+
+    <hr>
+    </div>
+    </div> <!-- /container -->
+
+  </main>
+  <% include partials/_footer %>
+
+  <script src="https://code.jquery.com/jquery-3.4.0.js" integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="crossorigin="anonymous"></script>
+  <script type="text/javascript" src="/scripts/menu.js"></script>
+  <script type="text/javascript" src="/scripts/pending.js"></script>
 </body>
 </html>

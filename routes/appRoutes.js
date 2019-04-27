@@ -33,10 +33,12 @@ module.exports = (helpers) => {
       if(err) {
         console.error(err)
       }
+      let order = orders.filter(order => order.id === Number(req.params.id))[0];
       let templateVars = {
-        order: orders.filter(order => order.id === Number(req.params.id))
+        order: order
       }
-      res.render("pending", templateVars)
+      res.render("pending", templateVars);
+
     })
   });
 
