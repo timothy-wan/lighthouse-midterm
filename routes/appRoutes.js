@@ -37,7 +37,12 @@ module.exports = (helpers) => {
       let templateVars = {
         order: order
       }
-      res.render("pending", templateVars);
+      if (order) {
+        res.render("pending", templateVars);
+      } else {
+        res.status(404).send('Invalid order #')
+      }
+
 
     })
   });
