@@ -37,6 +37,13 @@ module.exports = (helpers) => {
     })
   })
 
+  router.get("/orders/:id", (req, res) => {
+    helpers.getOrdersData((err, orders) => {
+      if(err) {
+        console.error(err)
+      }
+    })
+  });
 
   return router;
 }
