@@ -16,13 +16,24 @@ function makeHelpers(knex) {
     })
   }
 
-  const getOrder = (id, cb) => {
-    knex
+  const getOrder = (id) => {
+    return knex
     .select("*")
     .from("orders")
     .where('id', id)
-    .asCallback((err, res) => {
-      cb(err, res);
+    .returning('id')
+    .then((id) => {
+      return Promise.resolve(id);
+    })
+  }
+  const getCartData = (id) => {
+    return knex('orders_foods')
+    .join('foods', 'foodsid', '=', 'foods.id')
+    .select("*")
+    .where('ordersid', id)
+    .returning('id')
+    .then((id) => {
+      return Promise.resolve(id);
     })
   }
 
@@ -63,6 +74,7 @@ function makeHelpers(knex) {
     getUserData,
     getFoodData,
     getOrder,
+    getCartData,
     getOrdersData,
     insertOrder,
     insertFoodForOrder

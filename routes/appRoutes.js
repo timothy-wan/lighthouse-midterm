@@ -70,22 +70,22 @@ module.exports = (helpers, client, msgRes) => {
   })
 
   router.get("/orders/:id", (req, res) => {
-    helpers.getOrder(req.params.id, (err, order)=>{
-      if(err) {
-        console.error(err);
-        return;
-      }
-
-      const templateVars = {
-        order: order[0]
-      }
-
-      if (order) {
-        res.render("pending", templateVars);
+    let orderInfo = helpers.getOrder(req.params.id);
+    orderInfo.then((result) => {
+      let templateVars = {};
+      if(result) {
+        let orderID = result[0].id;
+        let getCart = helpers.getCartData(orderID);
+          getCart.then((cart) => {
+            templateVars.order = result[0];
+            templateVars.cart = cart;
+            res.render("pending", templateVars);
+          })    
       } else {
-        res.status(404).send('Invalid order #')
+          res.status(404).send('Invalid order #')
       }
-    });
+    })
+      // if (result) {
   });
 
   return router;
