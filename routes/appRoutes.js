@@ -57,10 +57,17 @@ module.exports = (helpers, client, msgRes) => {
       if(err) {
         console.error(err)
       }
+      let order = orders.filter(order => order.id === Number(req.params.id))[0];
       let templateVars = {
-        order: orders.filter(order => order.id === Number(req.params.id))
+        order: order
       }
-      res.render("pending", templateVars)
+      if (order) {
+        res.render("pending", templateVars);
+      } else {
+        res.status(404).send('Invalid order #')
+      }
+
+
     })
   });
 

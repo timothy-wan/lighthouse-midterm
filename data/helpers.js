@@ -15,6 +15,10 @@ function makeHelpers(knex) {
       cb(err, res);
     })
   }
+
+  // TODO -> select one order by ID
+
+
   const getOrdersData = (cb) => {
     knex
     .select("*")
@@ -40,7 +44,7 @@ function makeHelpers(knex) {
       id: newid,
       quantity: amount,
       ordersid: order,
-      foodsid: food   
+      foodsid: food
     })
   }
   const generateRandomString = () => {
@@ -61,8 +65,8 @@ function makeHelpers(knex) {
     insertFoodForOrder,
     generateRandomString
   };
-  
-  
+
+
 }
 
 module.exports = makeHelpers;
