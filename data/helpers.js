@@ -45,24 +45,11 @@ function makeHelpers(knex) {
       cb(err,res);
     })
   }
-  const insertFoodForOrder = (newid, amount, order, food) => {
-    knex('orders_foods')
-    .insert({
-      id: newid,
-      quantity: amount,
-      ordersid: order,
-      foodsid: food
+  const insertFoodForOrder = (values, cb) => {
+    knex.insert(values).into('orders_foods').asCallback((err, res) => {
+      cb(err, res);
     })
   }
-  const generateRandomString = () => {
-    let text = '';
-    let possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    for(let i = 0; i < 6; i++) {
-      text += possible.charAt(Math.floor(Math.random() * possible.length));
-    }
-    return text;
-  }
-
 
   return  {
     getUserData,
@@ -70,8 +57,7 @@ function makeHelpers(knex) {
     getOrder,
     getOrdersData,
     insertOrder,
-    insertFoodForOrder,
-    generateRandomString
+    insertFoodForOrder
   };
 
 
