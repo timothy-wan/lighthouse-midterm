@@ -6,12 +6,9 @@ const router  = express.Router();
 module.exports = (helpers) => {
 
   router.get("/", (req, res) => {
-    helpers.getUserData((err, users) => {
-      if(err) {
-        console.error(err);
-      }
+    helpers.getUserData().then((users) => {
       res.json(users);
-    });
+    })
   });
 
   return router;

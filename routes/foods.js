@@ -6,10 +6,7 @@ const router  = express.Router();
 module.exports = (helpers) => {
 
   router.get("/", (req, res) => {
-    helpers.getFoodData((err, result) => {
-      if(err) {
-        console.error(err);
-      }
+    helpers.getFoodData((result) => {
       res.json(result);
     })
   });

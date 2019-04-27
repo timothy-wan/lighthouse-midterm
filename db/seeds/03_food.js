@@ -1,6 +1,5 @@
 
 exports.seed = function(knex, Promise) {
-  // Deletes ALL existing entries
   return Promise.all([
     // Inserts seed entries
     knex('foods').insert({id: 1, name: 'Clam', category: 'shellfish', description: 'Fresh clams, sold by the pound', price: 10, unitprice: '/kg',img_src:"/images/clams.jpg"}),
