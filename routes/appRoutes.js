@@ -24,17 +24,6 @@ module.exports = (helpers, client, msgRes) => {
     res.end(twiml.toString());
   });
 
-  router.get('/test', (req, res) => {
-    helpers.alterOrderStatus(1, 20).then((result) => {
-      res.json(result);
-    })
-  });
-
-  router.get('/test2', (req, res) => {
-    helpers.getPendingOrders().then((result) => {
-      res.json(result);
-    })
-  })
 
   router.get("/menu", (req, res) => {
     let category = req.query.category;
@@ -96,7 +85,12 @@ module.exports = (helpers, client, msgRes) => {
   });
 
   router.get("/admin", (req, res) => {
-    res.render('admin')
+    helpers.getPendingOrders().then((orders) => {
+      let templateVars = {
+        orders : orders
+      }
+      res.render('admin', templateVars);
+    })
   })
 
   return router;

@@ -31,7 +31,6 @@
 
   <main>
     <div class="container pt-4">
-
       <div class="row">
         <div class="col-8 border border-secondary">
           <table class="table ">
@@ -43,47 +42,32 @@
                 <th scope="col" class="p-2">Sub Total</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <th scope="row" class="p-2">1</th>
-                <td class="p-2">Mark</td>
-                <td class="p-2">Otto</td>
-                <td class="p-2">$215</td>
-              </tr>
-              <tr>
-                <th scope="row" class="p-2">2</th>
-                <td class="p-2">Jacob</td>
-                <td class="p-2">Thornton</td>
-                <td class="p-2">$234</td>
-              </tr>
-              <tr>
-                <th scope="row" class="p-2">3</th>
-                <td class="p-2">Larry</td>
-                <td class="p-2">the Bird</td>
-                <td class="p-2">$345</td>
-              </tr>
-              <tr>
-                <td colspan="3"></td>
-                <td class="p-2">Total: </td>
+            <% console.log(orders) %>
+          <% orders.forEach((orderItem) => { %>
+              <tbody>
+                <tr>
+                  <th scope="row" class="p-2"><%= orderItem.name%></th>
+                  <td class="p-2"><%= orderItem.quantity %></td>
+                  <td class="p-2">$ <%= orderItem.price %></td>
+                  <td class="p-2">$ <%= (Number(orderItem.price) * Number(orderItem.quantity)).toFixed(2)%></td>
+                </tr>
+          <% }) %>
 
-              </tr>
-            </tbody>
-          </table>
+                <tr>
+                  <td colspan="3">Total:</td>
+                  <td class="p-2"> <% let beforeTax = orders.reduce((acc, cur) => acc + (cur.price * cur.quantity), 0).toFixed(2) %>
+                     $<%= beforeTax %></td>
+                </tr>
+              </tbody>
+            </table>
         </div>
 
         <div class="col-4 border border-secondary">
           <table class="table">
             <thead >
-              <!-- <tr class="text-center">
-                <tr>
-                <th scope="row" class="p-2">Order #: </th>
-                <td class="p-2">24</td>
-                </tr>
-              </tr> -->
-              <p class="text-center mt-2 mb-2"># 11251</p>
+              <p class="text-center mt-2 mb-2">#<%= orders[0].ordersid%></p>
             </thead>
             <tbody>
-
               <tr>
                 <th scope="row" class="p-2">Name: </th>
                 <td class="p-2">Jacob Smith</td>
