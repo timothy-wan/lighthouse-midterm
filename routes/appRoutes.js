@@ -82,10 +82,13 @@ module.exports = (helpers, client, msgRes) => {
     helpers.alterOrderStatus(req.params.id, req.body.ETA)
       .then(() => {
         client.messages.create({
-          body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
+          body: `Your order will be ready in ${req.body.ETA} minutes!`,
           from: '+16042600721',
           to: '+17783193398'
-        }).then(message => console.log('message sent'));
+        }).then(() => {
+          console.log('message sent');
+          res.redirect('/admin');
+        });
     })
   });
 
