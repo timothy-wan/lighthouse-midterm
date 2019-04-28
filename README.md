@@ -1,10 +1,10 @@
 # Restaurant Pickup
 Midterm Project for Lighthouse Lab's Web Development Bootcamp
 
-!["Home Page"]()
-!["Menu]()
-!["Checkout"]()
-!["Pending/Accepting Orders"]()
+!["Home Page"](https://github.com/tw5033/lighthouse-midterm/blob/readme_work/public/images/screenshots/home.png)
+!["Menu](https://github.com/tw5033/lighthouse-midterm/blob/readme_work/public/images/screenshots/menu.png)
+!["Checkout"](https://github.com/tw5033/lighthouse-midterm/blob/readme_work/public/images/screenshots/cart.png)
+!["Pending/Accepting Orders"](https://github.com/tw5033/lighthouse-midterm/blob/readme_work/public/images/screenshots/confirmed.png)
 
 A web app for a fictious restaurant that provides an order pickup service. Users will be able to view the restaurant's menu and create their order. Restaurant will be able choose to accept or decline an order. Upon confirmation of the order, users will be notified of their order status and receive an ETA.
 
