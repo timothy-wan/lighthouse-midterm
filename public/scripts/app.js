@@ -95,7 +95,7 @@ const drawCart = (foods, total) => {
   let subtotal = 0;
   // make html tags
   let div = $('<div>').addClass('col-md-12 order-md-2 mb-4');
-  let div2 = $('<div>').addClass('d-flex justify-content-end');
+  let div2 = $('<div>').addClass('d-flex justify-content-end pr-3');
   let button = $('<button>').addClass('btn btn-light checkout').text('Checkout');
   let h4 = $('<h4>').addClass('d-flex justify-content-between align-items-center mb-3');
   let span1 = $('<span>').addClass('text-muted').text('Your Cart');
