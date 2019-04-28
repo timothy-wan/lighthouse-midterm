@@ -26,6 +26,7 @@
           <div id='order' data-orderid="<%= order.id %>"><h4>Order # <%= order.id %></h4></div>
           <div>Placed: <%= order.created.toDateString() %></div>
           <div id='status' data-orderstatus="<%= order.status %>">Status: <%= order.status %><span id="dots" style="position:absolute;"></span></div>
+          <div id='eta'>ETA: <%= order.eta %></div>
           <div id='animation'><img src="/images/animation/crab1.png" style="height:120px;"></div>
         </div>
         <div class="col-4 themed-grid-col text-center"></div>

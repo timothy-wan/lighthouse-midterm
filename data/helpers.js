@@ -54,7 +54,8 @@ function makeHelpers(knex) {
     .insert({
       id: newid,
       created: new Date(),
-      status: 'pending',
+      status: 'Pending',
+      eta: 'N/A',
       userid: user
     })
     .returning('id')
@@ -75,7 +76,7 @@ function makeHelpers(knex) {
     return knex('orders')
     .where('id','=', idToEdit)
     .update({
-      status: 'confirmed',
+      status: 'Confirmed',
       eta: eta
     }).returning('*')
     .then((id) => {
@@ -88,7 +89,7 @@ function makeHelpers(knex) {
     .join('orders_foods', 'orders.id', '=', 'ordersid')
     .join('foods', 'foodsid', '=', 'foods.id')
     .join('users', 'users.id', '=', 'userid')
-    .where('orders.status', 'pending' )
+    .where('orders.status', 'Pending' )
     .returning('id')
     .then((id) => {
       return Promise.resolve(id);
