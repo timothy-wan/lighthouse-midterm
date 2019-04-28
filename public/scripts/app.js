@@ -137,17 +137,19 @@ const renderEmptyCart = () => {
   let div = $('<div>').addClass('text-center');
   let h1 = $('<h1>').text('Your cart');
   let span = $('<span>').text("Your cart is empty.");
-  let br = $('<br>');
-  let a = $('<a>').addClass('btn btn-info').attr('href', '/menu').attr('role', 'button').text('Continue Browsing Here');
+  let a = $('<a>').addClass('btn btn-light').attr('href', '/menu').attr('role', 'button').text('Continue Browsing Here');
+  let div2 = $('<div>').addClass('m-4').append(a);
+  let hr = $('<hr>');
+
   div.append(h1)
      .append(span)
-     .append(br)
-     .append(a);
+     .append(div2)
+     .append(hr);
   $('#container').append(div);
 }
 
 // listener function for quantity selector
-function quantityCounter(event){
+function quantityCounter(event) {
   let buttonType = $(event.target).attr('class');
   let foodid = $(event.target).attr('data-foodid');
   if (buttonType === 'increment') {

@@ -46,7 +46,6 @@ $(()=>{
         // TODO this is really stupid, we need a database helper to get 1 order
         let serverOrderStatus = orders.filter(o => o.id === orderid)[0].status;
         $('#status').data('orderstatus', serverOrderStatus)
-        console.log('current order status: ', serverOrderStatus);
       })
     }
   }, 10000);
