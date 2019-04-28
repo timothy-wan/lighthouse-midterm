@@ -83,6 +83,17 @@ function makeHelpers(knex) {
     })
   }
 
+  const getPendingOrders = () => {
+    return knex('orders')
+    .join('orders_foods', 'orders.id', '=', 'ordersid')
+    .join('foods', 'foodsid', '=', 'foods.id')
+    .where('orders.status', 'pending' )
+    .returning('id')
+    .then((id) => {
+      return Promise.resolve(id);
+    })
+  }
+
   return  {
     getUserData,
     getFoodData,
@@ -91,7 +102,8 @@ function makeHelpers(knex) {
     getOrdersData,
     insertOrder,
     insertFoodForOrder,
-    alterOrderStatus
+    alterOrderStatus,
+    getPendingOrders
   };
 
 

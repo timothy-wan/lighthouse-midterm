@@ -30,6 +30,12 @@ module.exports = (helpers, client, msgRes) => {
     })
   });
 
+  router.get('/test2', (req, res) => {
+    helpers.getPendingOrders().then((result) => {
+      res.json(result);
+    })
+  })
+
   router.get("/menu", (req, res) => {
     let category = req.query.category;
     if (!category) category = 'fish';
