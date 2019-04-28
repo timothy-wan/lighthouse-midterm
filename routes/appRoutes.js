@@ -5,13 +5,7 @@ const router  = express.Router();
 
 module.exports = (helpers, client, msgRes) => {
   router.get("/", (req, res) => {
-  //   client.messages
-  // .create({
-  //    body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
-  //    from: '+16042600721',
-  //    to: '+17783193398'
-  //  })
-  // .then(message => console.log(message.sid));
+  //
     res.render("index");
   });
 
@@ -81,6 +75,17 @@ module.exports = (helpers, client, msgRes) => {
       } else {
           res.status(404).send('Invalid order #')
       }
+    })
+  });
+
+  router.post("/orders/:id", (req, res) => {
+    helpers.alterOrderStatus(req.params.id, req.body.ETA)
+      .then(() => {
+        client.messages.create({
+          body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
+          from: '+16042600721',
+          to: '+17783193398'
+        }).then(message => console.log('message sent'));
     })
   });
 
