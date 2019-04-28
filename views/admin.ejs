@@ -1,5 +1,4 @@
-<% console.log(orders)
-
+<% 
   let organized = {};
   orders.forEach(order =>{
     if (!organized.hasOwnProperty(order.ordersid)){
@@ -8,8 +7,6 @@
       organized[order.ordersid].push(order);
     }
   })
-  console.log(organized);
-
 %>
 
 

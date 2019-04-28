@@ -3,7 +3,7 @@ $(()=>{
   //check to see if oder status has changed on the server every 10 seconds
 
   setInterval(function(){
-    if ($('#status').data('orderstatus') === 'pending') {
+    if ($('#status').data('orderstatus') === 'Pending') {
       //pending dots
       let $dots = $('#dots')
       if ($dots.text() === '') {
@@ -23,7 +23,8 @@ $(()=>{
       } else {
         $img.attr('src', '/images/animation/crab1.png');
       }
-    } else if ($('#status').data('orderstatus') === 'confirmed') {
+    } else if ($('#status').data('orderstatus') === 'Confirmed') {
+      $('#status').text('Status: Confirmed');
       //pending dots
       let $dots = $('#dots')
       $dots.text('.');
@@ -39,16 +40,16 @@ $(()=>{
   }, 1000)
 
   setInterval(function(){
-    let currentStatus = $('#status').data('orderstatus');
-    if (currentStatus === 'pending') {
+    if ($('#status').data('orderstatus') === 'Pending') {
       $.get('/api/orders', function(orders){
         let orderid = $('#order').data('orderid');
 
         // TODO this is really stupid, we need a database helper to get 1 order
         let serverOrderStatus = orders.filter(o => o.id === orderid)[0].status;
+        let orderETA = orders.filter(o => o.id === orderid)[0].eta;
         $('#status').data('orderstatus', serverOrderStatus);
-        if (serverOrderStatus){}
-        console.log('current order status: ', serverOrderStatus);
+        $('#status').text('Status: Confirmed');
+        $('#eta').text(`ETA: ${orderETA}`);
       })
     }
   }, 10000);

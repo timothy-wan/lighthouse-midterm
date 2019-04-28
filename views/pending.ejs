@@ -26,6 +26,7 @@
           <div id='order' data-orderid="<%= order.id %>"><h4>Order # <%= order.id %></h4></div>
           <div>Placed: <%= order.created.toDateString() %></div>
           <div id='status' data-orderstatus="<%= order.status %>">Status: <%= order.status %><span id="dots" style="position:absolute;"></span></div>
+          <div id='eta'>ETA: <%= order.eta %></div>
           <div id='animation'><img src="/images/animation/crab1.png" style="height:120px;"></div>
         </div>
         <div class="col-4 themed-grid-col text-center"></div>
@@ -42,7 +43,7 @@
   <div class="col-md-12 order-md-2 mb-4">
     <ul class="list-group mb-3">
       <!-- ITEM LOOP -->
-      <% cart.forEach(item => { console.log(item);%>
+      <% cart.forEach(item => { %>
         <li class="list-group-item d-flex justify-content-between lh-condensed">
           <div>
             <div>

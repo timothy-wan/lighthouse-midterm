@@ -35,8 +35,9 @@ module.exports = (helpers, client, msgRes) => {
 
   router.post("/cart", (req, res) => {
     let valuesToInsert = [];
-
-    let newOrder = helpers.insertOrder(orderID, 1);
+    let newUser = helpers.getRandomInt(3);
+    console.log(newUser);
+    let newOrder = helpers.insertOrder(orderID, newUser);
     newOrder.then(() => {
       req.body.cart.forEach((item) => {
         let value = {};
@@ -82,10 +83,13 @@ module.exports = (helpers, client, msgRes) => {
     helpers.alterOrderStatus(req.params.id, req.body.ETA)
       .then(() => {
         client.messages.create({
-          body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
+          body: `Your order will be ready in ${req.body.ETA} minutes!`,
           from: '+16042600721',
           to: '+17783193398'
-        }).then(message => console.log('message sent'));
+        }).then(() => {
+          console.log('message sent');
+          res.redirect('/admin');
+        });
     })
   });
 
