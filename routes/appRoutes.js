@@ -36,7 +36,7 @@ module.exports = (helpers, client, msgRes) => {
       res.render("menu", templateVars);
     })
   });
-  
+
   let orderID = 1;
 
   router.post("/cart", (req, res) => {

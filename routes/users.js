@@ -11,5 +11,9 @@ module.exports = (helpers) => {
     })
   });
 
+  router.post("/:id", (req, res) => {
+    res.send(req.params.id)
+  })
+
   return router;
 }
