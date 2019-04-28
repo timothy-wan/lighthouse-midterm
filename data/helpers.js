@@ -95,6 +95,10 @@ function makeHelpers(knex) {
     })
   }
 
+  const getRandomInt = (max) => {
+    return Math.floor(Math.random() * Math.floor(max)) + 1;
+  }
+
   return  {
     getUserData,
     getFoodData,
@@ -104,7 +108,8 @@ function makeHelpers(knex) {
     insertOrder,
     insertFoodForOrder,
     alterOrderStatus,
-    getPendingOrders
+    getPendingOrders,
+    getRandomInt
   };
 
 

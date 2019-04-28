@@ -35,8 +35,9 @@ module.exports = (helpers, client, msgRes) => {
 
   router.post("/cart", (req, res) => {
     let valuesToInsert = [];
-
-    let newOrder = helpers.insertOrder(orderID, 1);
+    let newUser = helpers.getRandomInt(3);
+    console.log(newUser);
+    let newOrder = helpers.insertOrder(orderID, newUser);
     newOrder.then(() => {
       req.body.cart.forEach((item) => {
         let value = {};
