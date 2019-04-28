@@ -52,14 +52,10 @@
           </div>
           <div class="counterprice">
             <div class="wrapper text-center">
-              <div class="quantity">
 
-                <div class="count" style="height:27px"><%= item.quantity %></div>
-
-              </div>
             </div>
-            <span class="text-muted">$ <%= item.price + item.unitprice%></span>
-            <span class="text-muted"><%= '$' + (Number(item.quantity) * parseInt(item.price)).toFixed(2) %></span>
+            <span class="text-muted"><%= item.quantity %>  X  $<%= item.price + item.unitprice%></span>
+            <span class="text-muted text-right"><%= '$' + (Number(item.quantity) * parseInt(item.price)).toFixed(2) %></span>
           </div>
         </li>
       <% }) %>

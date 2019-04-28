@@ -53,8 +53,8 @@ const drawCartItems = (food, ul) => {
   let button2 = $('<button>').addClass('increment').text('+').attr('data-foodid', food.id);
   let h5 = $('<h5>').addClass('my-0').text(food.name);
   let small = $('<small>').addClass('text-muted').text(food.description);
-  let span1 = $('<span>').addClass('text-muted').text(`$ ${priceTotal}`);
-  let span2 = $('<span>').addClass('text-muted').text(`$ ${food.price}${food.unitprice}`);
+  let span1 = $('<span>').addClass('text-muted text-right').text(`$ ${priceTotal}`);
+  let span2 = $('<span>').addClass('text-muted text-right').text(`$ ${food.price}${food.unitprice}`);
 
   // append tags
   div2.append(h5)
@@ -180,7 +180,7 @@ const postCart = () => {
       } else{
         alert("There was an error creating your order");
       }
-     
+
     });
   });
 }
