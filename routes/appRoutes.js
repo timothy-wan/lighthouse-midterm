@@ -5,7 +5,6 @@ const router  = express.Router();
 
 module.exports = (helpers, client, msgRes) => {
   router.get("/", (req, res) => {
-  //
     res.render("index");
   });
 
@@ -36,7 +35,6 @@ module.exports = (helpers, client, msgRes) => {
   router.post("/cart", (req, res) => {
     let valuesToInsert = [];
     let newUser = helpers.getRandomInt(3);
-    console.log(newUser);
     let newOrder = helpers.insertOrder(orderID, newUser);
     newOrder.then(() => {
       req.body.cart.forEach((item) => {
@@ -82,13 +80,13 @@ module.exports = (helpers, client, msgRes) => {
   router.post("/orders/:id", (req, res) => {
     helpers.alterOrderStatus(req.params.id, req.body.ETA)
       .then(() => {
+        res.redirect('/admin');
         client.messages.create({
           body: `Your order will be ready in ${req.body.ETA} minutes!`,
           from: '+16042600721',
           to: '+17783193398'
         }).then(() => {
           console.log('message sent');
-          res.redirect('/admin');
         });
     })
   });

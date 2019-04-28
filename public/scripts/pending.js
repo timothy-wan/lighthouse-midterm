@@ -48,9 +48,8 @@ $(()=>{
         let serverOrderStatus = orders.filter(o => o.id === orderid)[0].status;
         let orderETA = orders.filter(o => o.id === orderid)[0].eta;
         $('#status').data('orderstatus', serverOrderStatus);
-        $('#status').text('Status: Confirmed');
         $('#eta').text(`ETA: ${orderETA}`);
       })
     }
-  }, 10000);
+  }, 1000);
 })
