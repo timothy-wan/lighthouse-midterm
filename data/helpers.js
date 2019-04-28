@@ -87,6 +87,7 @@ function makeHelpers(knex) {
     return knex('orders')
     .join('orders_foods', 'orders.id', '=', 'ordersid')
     .join('foods', 'foodsid', '=', 'foods.id')
+    .join('users', 'users.id', '=', 'userid')
     .where('orders.status', 'pending' )
     .returning('id')
     .then((id) => {
