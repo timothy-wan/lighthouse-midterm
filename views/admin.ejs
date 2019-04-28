@@ -45,6 +45,7 @@
   </nav>
 
   <main>
+    <% for (let order in organized) { %>
     <div class="container pt-4">
       <div class="row">
         <div class="col-8 border border-secondary">
@@ -57,8 +58,7 @@
                 <th scope="col" class="p-2">Sub Total</th>
               </tr>
             </thead>
-            <% console.log(orders) %>
-          <% orders.forEach((orderItem) => { %>
+          <% organized[order].forEach((orderItem) => { %>
               <tbody>
                 <tr>
                   <th scope="row" class="p-2"><%= orderItem.name%></th>
@@ -70,7 +70,7 @@
 
                 <tr>
                   <td colspan="3">Total:</td>
-                  <td class="p-2"> <% let beforeTax = orders.reduce((acc, cur) => acc + (cur.price * cur.quantity), 0).toFixed(2) %>
+                  <td class="p-2"> <% let beforeTax = organized[order].reduce((acc, cur) => acc + (cur.price * cur.quantity), 0).toFixed(2) %>
                      $<%= beforeTax %></td>
                 </tr>
               </tbody>
@@ -80,36 +80,37 @@
         <div class="col-4 border border-secondary">
           <table class="table">
             <thead >
-              <p class="text-center mt-2 mb-2">#<%= orders[0].ordersid%></p>
+              <p class="text-center mt-2 mb-2">#<%= organized[order][0].ordersid%></p>
             </thead>
             <tbody>
               <tr>
                 <th scope="row" class="p-2">Name: </th>
-                <td class="p-2">Jacob Smith</td>
+                <td class="p-2"><%= organized[order][0].username%></td>
               </tr>
               <tr>
                 <th scope="row" class="p-2">Phone: </th>
-                <td class="p-2">604-254-1055</td>
+                <td class="p-2"><%= organized[order][0].phone_number%></td>
               </tr>
               <tr>
                 <th scope="row" class="p-2">Email: </th>
-                <td class="p-2">jacobsmith@gmail.com</td>
+                <td class="p-2"><%= organized[order][0].email%></td>
               </tr>
             </tbody>
           </table>
 
-          <form class="text-center">
+          <form class="text-center" action="/orders/<%= organized[order][0].ordersid%>" method="POST">
             <div>
               <label>Enter ETA: </label>
               <input type="text" name="ETA">
             </div>
-            <button>accept</button>
+            <button type="submit" value="submit">accept</button>
             <button>decline</button>
           </form>
         </div>
 
       </div>
     </div>
+    <% } %>
   </main>
 
 
