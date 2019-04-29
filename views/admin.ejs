@@ -101,7 +101,9 @@
               <input type="text" name="ETA">
             </div>
             <button type="submit" value="submit">accept</button>
-            <button>decline</button>
+          </form>
+          <form class='text-center' action="/orders/<%= organized[order][0].ordersid%>/delete" method="POST">
+            <button type="decline" value="submit">decline</button>
           </form>
         </div>
 

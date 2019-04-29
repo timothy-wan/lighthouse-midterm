@@ -84,6 +84,17 @@ function makeHelpers(knex) {
     })
   }
 
+  const cancelOrder = (orderID) => {
+    return knex('orders')
+    .where('id', '=', orderID)
+    .update({
+      status: 'Cancelled'
+    }).returning('id')
+    .then((id) => {
+      return Promise.resolve(id);
+    })
+  }
+
   const getPendingOrders = () => {
     return knex('orders')
     .join('orders_foods', 'orders.id', '=', 'ordersid')
@@ -109,6 +120,7 @@ function makeHelpers(knex) {
     insertOrder,
     insertFoodForOrder,
     alterOrderStatus,
+    cancelOrder,
     getPendingOrders,
     getRandomInt
   };

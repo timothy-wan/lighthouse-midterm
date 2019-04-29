@@ -2,10 +2,10 @@
 exports.seed = function(knex, Promise) {
   return Promise.all([
     // Inserts seed entries
-    knex('foods').insert({id: 1, name: 'Clam', category: 'shellfish', description: 'Fresh clams, sold by the pound', price: 16, unitprice: '/kg',img_src:"/images/clams.jpg"}),
+    knex('foods').insert({id: 1, name: 'Clam', category: 'shellfish', description: 'Fresh clams, sold by the kilo', price: 16, unitprice: '/kg',img_src:"/images/clams.jpg"}),
     knex('foods').insert({id: 2, name: 'Lobster', category: 'crustacean', description: 'Cleaned lobster', price: 80, unitprice: '/kg', img_src:"/images/lobster.jpg"}),
-    knex('foods').insert({id: 3, name: 'Mussel', category: 'shellfish', description: 'Fresh mussels, sold by the pound', price: 12, unitprice: '/kg', img_src:"/images/mussels.jpg"}),
-    knex('foods').insert({id: 4, name: 'Oysters', category: 'shellfish', description: 'Fresh oysters, sold by the pound', price: 24, unitprice: '/kg', img_src:"/images/oysters.jpg"}),
+    knex('foods').insert({id: 3, name: 'Mussel', category: 'shellfish', description: 'Fresh mussels, sold by the kilo', price: 12, unitprice: '/kg', img_src:"/images/mussels.jpg"}),
+    knex('foods').insert({id: 4, name: 'Oysters', category: 'shellfish', description: 'Fresh oysters, sold by the kilo', price: 24, unitprice: '/kg', img_src:"/images/oysters.jpg"}),
     knex('foods').insert({id: 5, name: 'Prawns', category: 'crustacean', description: 'African prawns, in packs of 12', price: 20, unitprice: '/dozen', img_src:"/images/prawns.jpg"}),
     knex('foods').insert({id: 6, name: 'Sockeye Salmon', category: 'fish', description: 'Caught from the Pacific Northwest', price: 35, unitprice: '/kg',img_src:"/images/salmon.jpg"}),
     knex('foods').insert({id: 7, name: 'Pacific Crab', category: 'crustacean', description: 'Local Crab', price: 30, unitprice: '/kg', img_src:"/images/crab2.png"}),
