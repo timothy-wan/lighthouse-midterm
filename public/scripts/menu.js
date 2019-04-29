@@ -29,7 +29,41 @@ function quantityCounter(event){
   }
 }
 
+function showDescription(){
+  let description = $(this).siblings('.description').text();
+  let css = {
+    width: '300px',
+    left: window.innerWidth/2 - this.width/2,
+    top: window.innerHeight/2 - this.height/2,
+    border: '1px solid black',
+    'border-radius': '10px'
+  }
+
+  let buttonCss = {
+    position: 'absolute',
+    top: '10px',
+    right: '10px'
+  }
+
+  let textCss = {
+    'font-size': '18px',
+    'padding-top': '45px',
+    'padding-bottom': '20px'
+
+  }
+  let $close = $('<button>').addClass('btn btn-light clearfix ').css(buttonCss).text('x').attr('id','close');
+  let $div =  $('<div>').addClass('descriptionBox container text-center').css(css).appendTo('body');
+  $close.appendTo($div);
+  let $text = $('<p>').text(description).css(textCss).appendTo($div);
+  $close.on('click', function(){
+    $(this).parent().remove();
+  })
+
+
+}
+
 $(()=>{
   writeItemQuantities()
-  $('.quantity').on('click', quantityCounter)
+  $('.quantity').on('click', quantityCounter);
+  $('.food img').on('click', showDescription);
 });

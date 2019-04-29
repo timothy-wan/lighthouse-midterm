@@ -1,0 +1,62 @@
+.center{
+width: 150px;
+  margin: 40px auto;
+
+}
+
+.food {
+
+    padding-bottom: 9px;
+}
+
+.food p {
+
+    margin-bottom: 4px;
+}
+
+.food h5 {
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.quantity {
+    display: inline-block;
+    background-color: white;
+    border: 1px solid black;
+}
+
+.quantity div{
+    width: 20px;
+    display: inline-block;
+    text-align: center;
+    padding: 0;
+    height: 100%;
+    margin: 0;
+}
+
+.increment {
+    border-left: 1px solid black;
+    border-top: 0px;
+    border-right: 0px;
+    border-bottom: 0px;
+
+}
+
+.decrement {
+    border-left: 0px;
+    border-top: 0px;
+    border-right: 1px solid black;
+    border-bottom: 0px;
+
+}
+
+.description {
+    display: none;
+}
+
+.descriptionBox {
+    position: absolute;
+    background-color: #EEE;
+    top: 100px;
+    left: 100px;
+}
