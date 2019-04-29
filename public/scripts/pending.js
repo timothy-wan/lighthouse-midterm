@@ -43,8 +43,6 @@ $(()=>{
     if ($('#status').data('orderstatus') === 'Pending') {
       $.get('/api/orders', function(orders){
         let orderid = $('#order').data('orderid');
-
-        // TODO this is really stupid, we need a database helper to get 1 order
         let serverOrderStatus = orders.filter(o => o.id === orderid)[0].status;
         let orderETA = orders.filter(o => o.id === orderid)[0].eta;
         $('#status').data('orderstatus', serverOrderStatus);

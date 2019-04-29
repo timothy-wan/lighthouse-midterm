@@ -90,6 +90,13 @@ module.exports = (helpers, client, msgRes) => {
         });
     })
   });
+  
+  router.post("/orders/:id/delete", (req, res) => {
+    helpers.cancelOrders(req.params.id)
+      .then(() => {
+        res.redirect("/admin");
+      })
+  })
 
   router.get("/admin", (req, res) => {
     helpers.getPendingOrders().then((orders) => {
