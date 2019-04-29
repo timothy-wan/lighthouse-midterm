@@ -42,6 +42,7 @@
       <div class="row">
         <% foodsList.filter(food => food.category === category).forEach((food => { %>
           <div class="col-md-3 food">
+            <div class="description"><%= food.description %></div>
             <img src="<%= food.img_src%>" class="img-thumbnail">
             <h5 class="text-center"><%= food.name %></h5>
             <p class="text-center">$<%= food.price %><%= food.unitprice %></p>
