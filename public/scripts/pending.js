@@ -36,6 +36,8 @@ $(()=>{
       } else {
         $img.attr('src', '/images/animation/pot1.png');
       }
+    } else if ($('#status').data('orderstatus') === 'Cancelled') {
+      $('#status').text('Status: Cancelled');
     }
   }, 1000)
 

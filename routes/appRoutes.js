@@ -92,7 +92,7 @@ module.exports = (helpers, client, msgRes) => {
   });
   
   router.post("/orders/:id/delete", (req, res) => {
-    helpers.cancelOrders(req.params.id)
+    helpers.cancelOrder(req.params.id)
       .then(() => {
         res.redirect("/admin");
       })
