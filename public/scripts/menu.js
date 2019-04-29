@@ -51,7 +51,7 @@ function showDescription(){
     'padding-bottom': '20px'
 
   }
-  let $close = $('<button>').addClass('btn btn-light clearfix ').css(buttonCss).text('x').attr('id','close');
+  let $close = $('<button>').addClass('btn btn-light clearfix').css(buttonCss).text('x').attr('id','close');
   let $div =  $('<div>').addClass('descriptionBox container text-center').css(css).appendTo('body');
   $close.appendTo($div);
   let $text = $('<p>').text(description).css(textCss).appendTo($div);
