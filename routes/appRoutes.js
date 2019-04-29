@@ -45,7 +45,14 @@ module.exports = (helpers, client, msgRes) => {
         valuesToInsert.push(value);
       });
       let result = helpers.insertFoodForOrder(valuesToInsert);
-      result.then(() =>{
+      result.then(() => { 
+        client.messages.create({
+          body: `You have a new order request! Please check your admin page!`,
+          from: '+16042600721',
+          to: '+17783193398'
+        }).then(() => {
+          console.log('message sent');
+        });
         res.json({
           result: true,
           url: `http://localhost:8080/orders/${orderID}`
