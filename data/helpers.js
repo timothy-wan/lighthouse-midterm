@@ -95,6 +95,10 @@ function makeHelpers(knex) {
     })
   }
 
+  // const deleteOrder = () => {
+
+  // }
+
   const getPendingOrders = () => {
     return knex('orders')
     .join('orders_foods', 'orders.id', '=', 'ordersid')

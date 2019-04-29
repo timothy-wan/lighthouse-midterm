@@ -101,6 +101,13 @@ module.exports = (helpers, client, msgRes) => {
   router.post("/orders/:id/delete", (req, res) => {
     helpers.cancelOrder(req.params.id)
       .then(() => {
+        client.messages.create({
+          body: `We are sorry, your order has been cancelled!`,
+          from: '+16042600721',
+          to: '+17783193398'
+        }).then(() => {
+          console.log('message sent');
+        });
         res.redirect("/admin");
       })
   })
